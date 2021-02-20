@@ -2,19 +2,19 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TextInput} from 'react-native';
 import {connect} from 'react-redux';
-import WrapperScreen from '../UsResuables/WrapperScreen';
+import WrapperScreen from '../CeComp/WrapperScreen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Measurements} from '../UsResuables/Measurement';
-import {colors} from '../UsResuables/frequentColors';
+import {H_W} from '../CeComp/CeDim';
+import {colors} from '../CeComp/CeColor';
 import {Button, Overlay} from 'react-native-elements';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
-import {isFormValid} from '../UsResuables/validation';
-import NavPointer from '../UsResuables/RefNavigation';
-import {UserAction, UsresetCart} from '../UsReduxStore/UsActions';
+import {isFormValid} from '../CeComp/validation';
+import NavPointer from '../CeComp/RefNavigation';
+import {CeUserAction, CeresetCart} from '../CeRedux/CeActions';
 import Toast from 'react-native-root-toast';
-import UseHeader from '../UsResuables/MyHeader';
+import UseHeader from '../CeComp/CeHeader';
 
 const ConfirmOrder = (props) => {
   const [firstName, setFirstName] = useState('');
@@ -42,7 +42,7 @@ const ConfirmOrder = (props) => {
       errorMsgHandler(formValidResponse.errCategory, formValidResponse.errMsg);
     } else {
       CallApi();
-      props.UserAction({
+      props.CeUserAction({
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -125,8 +125,8 @@ const ConfirmOrder = (props) => {
 
   const closeModal = () => {
     setShowModal(false);
-    props.UsresetCart();
-    NavPointer.Push('UsHome');
+    props.CeresetCart();
+    NavPointer.Push('CeHome');
   };
 
   const changeFirstName = (t) => setFirstName(t);
@@ -172,7 +172,7 @@ const ConfirmOrder = (props) => {
             <View style={styles.personalInfoInputWrapper}>
               <Feather
                 name="user"
-                size={Measurements.width * 0.07}
+                size={H_W.width * 0.07}
                 style={styles.inputIcon}
               />
               <TextInput
@@ -193,7 +193,7 @@ const ConfirmOrder = (props) => {
             <View style={styles.personalInfoInputWrapper}>
               <Feather
                 name="user"
-                size={Measurements.width * 0.07}
+                size={H_W.width * 0.07}
                 style={styles.inputIcon}
               />
               <TextInput
@@ -214,7 +214,7 @@ const ConfirmOrder = (props) => {
             <View style={styles.personalInfoInputWrapper}>
               <Feather
                 name="mail"
-                size={Measurements.width * 0.07}
+                size={H_W.width * 0.07}
                 style={styles.inputIcon}
               />
               <TextInput
@@ -235,7 +235,7 @@ const ConfirmOrder = (props) => {
             <View style={styles.personalInfoInputWrapper}>
               <Feather
                 name="phone"
-                size={Measurements.width * 0.07}
+                size={H_W.width * 0.07}
                 style={styles.inputIcon}
               />
               <TextInput
@@ -257,7 +257,7 @@ const ConfirmOrder = (props) => {
             <View style={styles.personalInfoInputWrapper}>
               <Feather
                 name="map-pin"
-                size={Measurements.width * 0.07}
+                size={H_W.width * 0.07}
                 style={styles.inputIcon}
               />
               <TextInput
@@ -286,7 +286,7 @@ const ConfirmOrder = (props) => {
           <View style={styles.ModalWrapper}>
             <FontAwesome
               name="check-circle-o"
-              size={Measurements.width * 0.25}
+              size={H_W.width * 0.25}
               color={colors.primary}
             />
             <Text style={styles.ModalHeadText}>THANK YOU!</Text>
@@ -302,17 +302,17 @@ const ConfirmOrder = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    pdt: state.UsCrntPrdtReducer,
-    total: state.UsCartReducer.totalAmount,
+    pdt: state.CeCrntPrdtReducer,
+    total: state.CeCartReducer.totalAmount,
   };
 };
 
-export default connect(mapStateToProps, {UserAction, UsresetCart})(
+export default connect(mapStateToProps, {CeUserAction, CeresetCart})(
   React.memo(ConfirmOrder),
 );
 
 const styles = StyleSheet.create({
-  sm4: {fontSize: Measurements.width * 0.03, fontWeight: 'bold'},
+  sm4: {fontSize: H_W.width * 0.03, fontWeight: 'bold'},
   sm3: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -335,22 +335,22 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
-    padding: Measurements.width * 0.04,
+    padding: H_W.width * 0.04,
   },
   summaryOverlay: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: Measurements.height * 0.02,
+    marginBottom: H_W.height * 0.02,
   },
   connecter3: {
     backgroundColor: colors.primary,
     width: '3%',
-    height: Measurements.height * 0.05,
+    height: H_W.height * 0.05,
   },
   connecter2: {
     width: '80%',
-    height: Measurements.height * 0.02,
+    height: H_W.height * 0.02,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
@@ -371,29 +371,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 10,
-    width: Measurements.width * 0.35,
+    width: H_W.width * 0.35,
   },
   TileImage: {
-    width: Measurements.width * 0.3,
-    height: Measurements.width * 0.35,
+    width: H_W.width * 0.3,
+    height: H_W.width * 0.35,
   },
   ModalSubText: {
-    fontSize: Measurements.width * 0.045,
+    fontSize: H_W.width * 0.045,
     color: colors.darkGray,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   ModalHeadText: {
-    fontSize: Measurements.width * 0.09,
+    fontSize: H_W.width * 0.09,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   ModalWrapper: {
-    paddingVertical: Measurements.height * 0.04,
+    paddingVertical: H_W.height * 0.04,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: Measurements.width * 0.8,
+    width: H_W.width * 0.8,
   },
   confirmButtonContainer: {
     width: '100%',
@@ -409,25 +409,25 @@ const styles = StyleSheet.create({
   },
   confirmButton: {
     backgroundColor: colors.primary,
-    padding: Measurements.height * 0.018,
+    padding: H_W.height * 0.018,
   },
   ConfirmButtonWrapper: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: Measurements.width * 0.035,
-    marginBottom: Measurements.height * 0.02,
+    marginHorizontal: H_W.width * 0.035,
+    marginBottom: H_W.height * 0.02,
   },
   Input: {
-    width: Measurements.width * 0.81,
-    height: Measurements.height * 0.065,
+    width: H_W.width * 0.81,
+    height: H_W.height * 0.065,
   },
   inputIcon: {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    width: Measurements.width * 0.09,
+    width: H_W.width * 0.09,
     color: colors.primary,
   },
   personalInfoInputWrapper: {
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: 'white',
-    paddingHorizontal: Measurements.width * 0.02,
+    paddingHorizontal: H_W.width * 0.02,
     borderRadius: 50,
     borderWidth: 1,
     borderColor: colors.primary,
@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   PersonalInfoWrapper: {
-    marginHorizontal: Measurements.width * 0.035,
+    marginHorizontal: H_W.width * 0.035,
     marginVertical: 20,
   },
   personalInfoHeader: {
@@ -458,7 +458,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   personalInfoWrapper: {
-    marginHorizontal: Measurements.width * 0.035,
+    marginHorizontal: H_W.width * 0.035,
   },
   bookingDetailsWrapper: {
     borderColor: colors.primary,
@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 50,
     padding: 10,
-    marginVertical: Measurements.height * 0.01,
+    marginVertical: H_W.height * 0.01,
     backgroundColor: colors.primary,
     shadowColor: '#000',
     shadowOffset: {
@@ -484,13 +484,13 @@ const styles = StyleSheet.create({
     color: colors.secondary,
     fontSize: 18,
     fontWeight: 'bold',
-    width: Measurements.width * 0.35,
+    width: H_W.width * 0.35,
   },
   DetailWrapper: {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    marginLeft: Measurements.width * 0.06,
+    marginLeft: H_W.width * 0.06,
     position: 'relative',
   },
   bookingDetailsCenterOverlay: {

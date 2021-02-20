@@ -1,6 +1,6 @@
 import ActionTypes from './actionTypes';
 
-export const UserAction = (userinfo) => {
+export const CeUserAction = (userinfo) => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.USER_INFO,
@@ -9,7 +9,7 @@ export const UserAction = (userinfo) => {
   };
 };
 
-export const UssetCurrentProductAction = (productInfo) => {
+export const CesetCurrentProductAction = (productInfo) => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.SET_CURRENT_PRODUCT,
@@ -18,7 +18,7 @@ export const UssetCurrentProductAction = (productInfo) => {
   };
 };
 
-export const UssetFavAction = (favItem) => {
+export const CesetFavAction = (favItem) => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.SET_FAVOURITE,
@@ -27,7 +27,7 @@ export const UssetFavAction = (favItem) => {
   };
 };
 
-export const UsremoveFavAction = (itemId) => {
+export const CeremoveFavAction = (itemId) => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.REMOVE_FAVOURITE,
@@ -36,7 +36,7 @@ export const UsremoveFavAction = (itemId) => {
   };
 };
 
-export const UsaddCartAction = (item) => {
+export const CeaddCartAction = (item) => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.ADD_ITEM_CART,
@@ -45,7 +45,7 @@ export const UsaddCartAction = (item) => {
   };
 };
 
-export const UsremoveCartAction = (item) => {
+export const CeremoveCartAction = (item) => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.REMOVE_ITEM_CART,
@@ -54,7 +54,7 @@ export const UsremoveCartAction = (item) => {
   };
 };
 
-export const UsresetCart = () => {
+export const CeresetCart = () => {
   return async (dispatch) => {
     dispatch({
       type: ActionTypes.RESET_CART,

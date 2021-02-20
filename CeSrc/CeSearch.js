@@ -1,22 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import WrapperScreen from '../UsResuables/WrapperScreen';
-import {Measurements} from '../UsResuables/Measurement';
-import NavigationRef from '../UsResuables/RefNavigation';
+import WrapperScreen from '../CeComp/WrapperScreen';
+import {H_W} from '../CeComp/CeDim';
+import NavigationRef from '../CeComp/RefNavigation';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import SearchBar from '../UsResuables/searchingBar';
-import Data from '../UsDummyData';
-import {FruityTiles} from './UsHome';
-import Loop from '../UsResuables/looping';
+import SearchBar from '../CeComp/CeSearchBar';
+import Data from '../CeData';
+import {FruityTiles} from './CeHome';
+import Loop from '../CeComp/CeFlatList';
 import {connect} from 'react-redux';
 import {
-  UssetCurrentProductAction,
-  UsremoveFavAction,
-  UssetFavAction,
-} from '../UsReduxStore/UsActions';
-import UseHeader from '../UsResuables/MyHeader';
+  CesetCurrentProductAction,
+  CeremoveFavAction,
+  CesetFavAction,
+} from '../CeRedux/CeActions';
+import UseHeader from '../CeComp/CeHeader';
 
 function Search(props) {
   const [searchText, setSearchText] = useState('');
@@ -34,9 +34,9 @@ function Search(props) {
     );
   };
 
-  const UsGoToSingleProduct = (item) => {
-    props.UssetCurrentProductAction(item);
-    NavigationRef.Navigate('UsSingleProduct');
+  const CeGoToSingleProduct = (item) => {
+    props.CesetCurrentProductAction(item);
+    NavigationRef.Navigate('CeSingleProduct');
   };
 
   const CardRender = (Arr) => {
@@ -46,16 +46,16 @@ function Search(props) {
         renderItem={({item}) => (
           <FruityTiles
             item={item}
-            UsGoToSingleProduct={UsGoToSingleProduct}
-            UsFavs={props.UsFavs}
-            UsRemoveFavAct={(i) => props.UsremoveFavAction(i)}
-            UsSetFavAct={(i) => props.UssetFavAction(i)}
+            CeGoToSingleProduct={CeGoToSingleProduct}
+            CeFavs={props.CeFavs}
+            CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
+            CeSetFavAct={(i) => props.CesetFavAction(i)}
           />
         )}
       />
     );
   };
-  const UsGoBack = () => NavigationRef.GoBack();
+  const CeGoBack = () => NavigationRef.GoBack();
 
   const changeSearchText = (t) => setSearchText(t);
   return (
@@ -64,13 +64,13 @@ function Search(props) {
         leftIcon={Entypo}
         leftIconName="chevron-left"
         Title="Everything Here"
-        leftIconAction={UsGoBack}
+        leftIconAction={CeGoBack}
       />
       <View style={styles.SearchBarWrapper}>
         <SearchBar changeSearchText={changeSearchText} />
       </View>
       <KeyboardAwareScrollView style={styles.container}>
-        <View style={{marginTop: Measurements.height * 0.03}}>
+        <View style={{marginTop: H_W.height * 0.03}}>
           {searchText !== ''
             ? RenderSearchedResult()
             : CardRender(Data.product)}
@@ -81,13 +81,13 @@ function Search(props) {
 }
 
 const mapStateToProps = (state) => ({
-  UsFavs: state.UsToggleFav,
+  CeFavs: state.CeToggleFav,
 });
 
 export default connect(mapStateToProps, {
-  UssetCurrentProductAction,
-  UsremoveFavAction,
-  UssetFavAction,
+  CesetCurrentProductAction,
+  CeremoveFavAction,
+  CesetFavAction,
 })(Search);
 
 const styles = StyleSheet.create({
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingHorizontal: Measurements.width * 0.03,
-    paddingVertical: Measurements.height * 0.018,
+    paddingHorizontal: H_W.width * 0.03,
+    paddingVertical: H_W.height * 0.018,
   },
   TilesWrapper: {
     display: 'flex',
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: Measurements.height * 0.003,
+    marginVertical: H_W.height * 0.003,
   },
   container: {flex: 1},
 });

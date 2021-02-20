@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {colors} from './frequentColors';
-import {Measurements} from './Measurement';
+import {colors} from './CeColor';
+import {H_W} from './CeDim';
 import {Badge} from 'react-native-elements';
 import {connect} from 'react-redux';
 
@@ -40,7 +40,7 @@ function MyHeader({
           <TouchableOpacity onPress={leftIconAction} style={styles.IconWrap}>
             <LeftIconLibrary
               name={leftIconName}
-              size={Measurements.width * 0.065}
+              size={H_W.width * 0.065}
               color={leftIconColor ? leftIconColor : colors.primary}
             />
             {totalItems > 0 && leftIconName.includes('shopping') && (
@@ -65,7 +65,7 @@ function MyHeader({
           <TouchableOpacity onPress={rightIconAction} style={styles.IconWrap}>
             <RightIconLibrary
               name={rightIconName}
-              size={Measurements.width * 0.075}
+              size={H_W.width * 0.075}
               color={rightIconColor ? rightIconColor : colors.primary}
             />
             {totalItems > 0 && rightIconName.includes('shopping') && (
@@ -105,26 +105,26 @@ const styles = StyleSheet.create({
   HeaderText: {
     fontWeight: 'bold',
     color: colors.primary,
-    fontSize: Measurements.width * 0.08,
+    fontSize: H_W.width * 0.08,
   },
   HeaderBarInnerWrapper: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: Measurements.width * 0.93,
+    width: H_W.width * 0.93,
   },
   HeaderBarWrapper: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: Measurements.height * 0.018,
+    marginVertical: H_W.height * 0.018,
   },
 });
 
 const mapStateToProps = (state) => ({
-  totalItems: state.UsCartReducer.totalItems,
+  totalItems: state.CeCartReducer.totalItems,
 });
 
 export default connect(mapStateToProps, {})(MyHeader);

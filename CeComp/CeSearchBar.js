@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Measurements} from '../UsResuables/Measurement';
-import {colors} from '../UsResuables/frequentColors';
+import {H_W} from './CeDim';
+import {colors} from './CeColor';
 
 export default function SearchBar({editable, changeSearchText}) {
   const [isFocused, setisFocused] = useState(false);
@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
     borderRadius: 10,
-    width: Measurements.width * 0.9,
+    width: H_W.width * 0.9,
     paddingHorizontal: 10,
-    height: Measurements.height * 0.07,
+    height: H_W.height * 0.07,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: {

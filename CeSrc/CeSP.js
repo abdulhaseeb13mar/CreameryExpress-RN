@@ -7,21 +7,20 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {Measurements} from '../UsResuables/Measurement';
-import WrapperScreen from '../UsResuables/WrapperScreen';
+import {H_W} from '../CeComp/CeDim';
+import WrapperScreen from '../CeComp/WrapperScreen';
 import {connect} from 'react-redux';
 import {Button} from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {colors} from '../UsResuables/frequentColors';
-import NavigationRef from '../UsResuables/RefNavigation';
+import {colors} from '../CeComp/CeColor';
+import NavigationRef from '../CeComp/RefNavigation';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
-  UsremoveFavAction,
-  UssetFavAction,
-  UsaddCartAction,
-  UsremoveCartAction,
-} from '../UsReduxStore/UsActions';
-import StarRating from '../StarRating/rating';
+  CeremoveFavAction,
+  CesetFavAction,
+  CeaddCartAction,
+  CeremoveCartAction,
+} from '../CeRedux/CeActions';
 
 function SingleProduct(props) {
   useEffect(() => {
@@ -31,33 +30,33 @@ function SingleProduct(props) {
   const [fav, setFav] = useState(false);
   const [sugarLevel, setSugarLevel] = useState('0%');
   const [size, setSize] = useState({size: 'Small', amount: '125ml'});
-  const UsProduct = props.UsProduct;
+  const CeProduct = props.CeProduct;
 
   const checkIfFav = () => {
-    for (let us = 0; us < props.UsFavs.length; us++) {
-      if (props.UsFavs[us].id === UsProduct.id) {
+    for (let us = 0; us < props.CeFavs.length; us++) {
+      if (props.CeFavs[us].id === CeProduct.id) {
         setFav(true);
         break;
       }
     }
   };
 
-  const UsAddToCart = () => props.UsaddCartAction(UsProduct);
+  const CeAddToCart = () => props.CeaddCartAction(CeProduct);
 
-  const UsRemoveFromCart = () => {
-    props.UsCart[UsProduct.id] !== undefined
-      ? props.UsremoveCartAction(UsProduct)
+  const CeRemoveFromCart = () => {
+    props.CeCart[CeProduct.id] !== undefined
+      ? props.CeremoveCartAction(CeProduct)
       : null;
   };
 
   const toggleFav = () => {
     fav
-      ? props.UsremoveFavAction(UsProduct.id)
-      : props.UssetFavAction(UsProduct);
+      ? props.CeremoveFavAction(CeProduct.id)
+      : props.CesetFavAction(CeProduct);
     setFav(!fav);
   };
 
-  const UsGoBack = () => NavigationRef.Navigate('UsHome');
+  const CeGoBack = () => NavigationRef.Navigate('CeHome');
 
   return (
     <WrapperScreen style={{backgroundColor: colors.primary}}>
@@ -65,8 +64,8 @@ function SingleProduct(props) {
         <View style={styles.singleProduct_SL19}>
           <View
             style={{
-              width: Measurements.width * 0.14,
-              height: Measurements.width * 0.14,
+              width: H_W.width * 0.14,
+              height: H_W.width * 0.14,
               backgroundColor: 'white',
               borderRadius: 50,
               opacity: 0.2,
@@ -78,8 +77,8 @@ function SingleProduct(props) {
           />
           <View
             style={{
-              width: Measurements.width * 0.14,
-              height: Measurements.width * 0.14,
+              width: H_W.width * 0.14,
+              height: H_W.width * 0.14,
               backgroundColor: 'white',
               borderRadius: 50,
               opacity: 0.2,
@@ -91,29 +90,29 @@ function SingleProduct(props) {
           />
           <ImageBackground
             resizeMode="contain"
-            source={UsProduct.images}
+            source={CeProduct.images}
             style={styles.singleProduct_SL18}>
             <View
               style={{
-                marginTop: Measurements.height * 0.025,
+                marginTop: H_W.height * 0.025,
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}>
               <TouchableOpacity
                 style={styles.singleProduct_SL17}
-                onPress={UsGoBack}>
+                onPress={CeGoBack}>
                 <Entypo
                   name="chevron-left"
                   color={'white'}
-                  size={Measurements.width * 0.08}
+                  size={H_W.width * 0.08}
                 />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={toggleFav}
                 style={{
-                  width: Measurements.width * 0.12,
-                  height: Measurements.width * 0.12,
+                  width: H_W.width * 0.12,
+                  height: H_W.width * 0.12,
                   borderRadius: 50,
                   backgroundColor: 'white',
                   alignItems: 'center',
@@ -130,7 +129,7 @@ function SingleProduct(props) {
                 <Ionicons
                   name={fav ? 'ios-heart' : 'ios-heart-outline'}
                   color="red"
-                  size={Measurements.width * 0.06}
+                  size={H_W.width * 0.06}
                 />
               </TouchableOpacity>
             </View>
@@ -140,24 +139,23 @@ function SingleProduct(props) {
           <View style={styles.singleProduct_SL15}>
             <View style={styles.singleProduct_SL14} />
             <View style={styles.singleProduct_SL13}>
-              <Text style={styles.singleProduct_SL12}>{UsProduct.name}</Text>
+              <Text style={styles.singleProduct_SL12}>{CeProduct.name}</Text>
               <Text style={styles.singleProduct_SL11}>
                 $
-                <Text style={{fontSize: Measurements.width * 0.09}}>
-                  {UsProduct.price}
+                <Text style={{fontSize: H_W.width * 0.09}}>
+                  {CeProduct.price}
                 </Text>
               </Text>
             </View>
             <View style={styles.singleProduct_SL21}>
-              <StarRating rating={3.5} size={Measurements.width * 0.25} />
-              <Text style={styles.singleProduct_SL22}>{UsProduct.rating}</Text>
+              <Text style={styles.singleProduct_SL22}>{CeProduct.rating}</Text>
             </View>
           </View>
           <View style={{width: '100%'}}>
             <Text
               style={{
                 fontWeight: 'bold',
-                fontSize: Measurements.width * 0.048,
+                fontSize: H_W.width * 0.048,
               }}>
               Sugar Level
             </Text>
@@ -192,7 +190,7 @@ function SingleProduct(props) {
             <Text
               style={{
                 fontWeight: 'bold',
-                fontSize: Measurements.width * 0.048,
+                fontSize: H_W.width * 0.048,
               }}>
               Choice Size
             </Text>
@@ -238,35 +236,35 @@ function SingleProduct(props) {
             <View style={styles.singleProduct_SL2}>
               <TouchableOpacity
                 onPress={
-                  props.UsCart[UsProduct.id] !== undefined &&
-                  props.UsCart[UsProduct.id] !== 0
-                    ? UsRemoveFromCart
+                  props.CeCart[CeProduct.id] !== undefined &&
+                  props.CeCart[CeProduct.id] !== 0
+                    ? CeRemoveFromCart
                     : null
                 }>
                 <Ionicons
                   name="ios-remove"
                   color={colors.lightGrey3}
-                  size={Measurements.width * 0.065}
+                  size={H_W.width * 0.065}
                 />
               </TouchableOpacity>
               <Text style={styles.singleProduct_SL23}>
-                {props.UsCart[UsProduct.id] !== undefined &&
-                props.UsCart[UsProduct.id] !== 0
-                  ? props.UsCart[UsProduct.id].added
+                {props.CeCart[CeProduct.id] !== undefined &&
+                props.CeCart[CeProduct.id] !== 0
+                  ? props.CeCart[CeProduct.id].added
                   : '0'}
               </Text>
-              <TouchableOpacity onPress={UsAddToCart}>
+              <TouchableOpacity onPress={CeAddToCart}>
                 <Ionicons
                   name="ios-add"
                   color={colors.lightGrey3}
-                  size={Measurements.width * 0.065}
+                  size={H_W.width * 0.065}
                 />
               </TouchableOpacity>
             </View>
             <Button
               raised
               title="Add To Cart"
-              onPress={UsAddToCart}
+              onPress={CeAddToCart}
               buttonStyle={styles.singleProduct_SL1}
               containerStyle={{width: '50%'}}
             />
@@ -280,16 +278,16 @@ function SingleProduct(props) {
 const styles = StyleSheet.create({
   singleProduct_SL23: {
     fontWeight: 'bold',
-    fontSize: Measurements.width * 0.056,
+    fontSize: H_W.width * 0.056,
   },
   singleProduct_SL22: {
-    marginLeft: Measurements.width * 0.045,
+    marginLeft: H_W.width * 0.045,
     color: colors.darkGray,
-    fontSize: Measurements.width * 0.045,
+    fontSize: H_W.width * 0.045,
     fontWeight: 'bold',
   },
   singleProduct_SL21: {
-    width: Measurements.width * 0.55,
+    width: H_W.width * 0.55,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -301,32 +299,32 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   singleProduct_SL19: {
-    width: Measurements.width,
-    height: Measurements.height * 0.37,
-    paddingHorizontal: Measurements.width * 0.05,
+    width: H_W.width,
+    height: H_W.height * 0.37,
+    paddingHorizontal: H_W.width * 0.05,
   },
   singleProduct_SL18: {width: '100%', height: '100%'},
   singleProduct_SL16: {
     backgroundColor: 'white',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    height: Measurements.height * 0.62,
-    width: Measurements.width,
+    height: H_W.height * 0.62,
+    width: H_W.width,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: Measurements.height * 0.01,
-    paddingHorizontal: Measurements.width * 0.035,
-    paddingBottom: Measurements.height * 0.02,
+    paddingTop: H_W.height * 0.01,
+    paddingHorizontal: H_W.width * 0.035,
+    paddingBottom: H_W.height * 0.02,
   },
   singleProduct_SL15: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: Measurements.height * 0.01,
+    marginBottom: H_W.height * 0.01,
   },
   singleProduct_SL14: {
-    width: Measurements.width * 0.25,
-    height: Measurements.width * 0.0095,
+    width: H_W.width * 0.25,
+    height: H_W.width * 0.0095,
     backgroundColor: colors.darkGray,
     opacity: 0.5,
   },
@@ -335,55 +333,55 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: Measurements.height * 0.02,
+    marginTop: H_W.height * 0.02,
   },
   singleProduct_SL12: {
     width: '75%',
     fontWeight: 'bold',
-    fontSize: Measurements.width * 0.08,
+    fontSize: H_W.width * 0.08,
     color: colors.primary,
   },
   singleProduct_SL11: {
     fontWeight: 'bold',
     alignSelf: 'flex-end',
     color: colors.primary,
-    fontSize: Measurements.width * 0.058,
+    fontSize: H_W.width * 0.058,
   },
   singleProduct_SL10: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    paddingVertical: Measurements.height * 0.01,
+    paddingVertical: H_W.height * 0.01,
   },
   singleProduct_SL9_1: {
-    width: Measurements.width * 0.2,
+    width: H_W.width * 0.2,
     borderColor: colors.lightBackground2,
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Measurements.height * 0.015,
+    paddingVertical: H_W.height * 0.015,
   },
   singleProduct_SL9_2: {
-    width: Measurements.width * 0.2,
+    width: H_W.width * 0.2,
     borderColor: colors.lightBackground2,
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Measurements.height * 0.01,
+    paddingVertical: H_W.height * 0.01,
   },
   singleProduct_SL8: {
     fontWeight: 'bold',
-    marginVertical: Measurements.height * 0.002,
-    fontSize: Measurements.width * 0.042,
+    marginVertical: H_W.height * 0.002,
+    fontSize: H_W.width * 0.042,
   },
 
   singleProduct_SL7: {
-    fontSize: Measurements.width * 0.035,
+    fontSize: H_W.width * 0.035,
     color: colors.lightGrey3,
     fontWeight: 'bold',
   },
@@ -393,11 +391,11 @@ const styles = StyleSheet.create({
   },
   singleProduct_SL5: {
     width: '100%',
-    maxHeight: Measurements.height * 0.15,
+    maxHeight: H_W.height * 0.15,
     backgroundColor: 'white',
     elevation: 2,
     borderRadius: 10,
-    paddingHorizontal: Measurements.width * 0.015,
+    paddingHorizontal: H_W.width * 0.015,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -407,8 +405,8 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
   },
   singleProduct_SL4: {
-    fontSize: Measurements.width * 0.037,
-    lineHeight: Measurements.height * 0.027,
+    fontSize: H_W.width * 0.037,
+    lineHeight: H_W.height * 0.027,
     color: colors.lightGrey3,
     fontWeight: 'bold',
   },
@@ -417,7 +415,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: Measurements.height * 0.008,
+    marginTop: H_W.height * 0.008,
   },
   singleProduct_SL2: {
     borderColor: colors.lightBackground2,
@@ -428,11 +426,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: Measurements.width * 0.015,
-    paddingVertical: Measurements.height * 0.01,
+    paddingHorizontal: H_W.width * 0.015,
+    paddingVertical: H_W.height * 0.01,
   },
   singleProduct_SL1: {
-    height: Measurements.height * 0.07,
+    height: H_W.height * 0.07,
     backgroundColor: colors.primary,
     borderRadius: 10,
   },
@@ -440,15 +438,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    UsProduct: state.UsCrntPrdtReducer,
-    UsFavs: state.UsToggleFav,
-    UsCart: state.UsCartReducer.items,
+    CeProduct: state.CeCrntPrdtReducer,
+    CeFavs: state.CeToggleFav,
+    CeCart: state.CeCartReducer.items,
   };
 };
 
 export default connect(mapStateToProps, {
-  UssetFavAction,
-  UsremoveFavAction,
-  UsremoveCartAction,
-  UsaddCartAction,
+  CesetFavAction,
+  CeremoveFavAction,
+  CeremoveCartAction,
+  CeaddCartAction,
 })(React.memo(SingleProduct));

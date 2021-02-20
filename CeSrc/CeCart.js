@@ -3,41 +3,41 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {
-  UsremoveFavAction,
-  UssetFavAction,
-  UsremoveCartAction,
-  UsaddCartAction,
-  UssetCurrentProductAction,
-} from '../UsReduxStore/UsActions';
-import WrapperScreen from '../UsResuables/WrapperScreen';
-import {colors} from '../UsResuables/frequentColors';
-import {Measurements} from '../UsResuables/Measurement';
-import RefNavigation from '../UsResuables/RefNavigation';
+  CeremoveFavAction,
+  CesetFavAction,
+  CeremoveCartAction,
+  CeaddCartAction,
+  CesetCurrentProductAction,
+} from '../CeRedux/CeActions';
+import WrapperScreen from '../CeComp/WrapperScreen';
+import {colors} from '../CeComp/CeColor';
+import {Measurements} from '../CeComp/CeDim';
+import RefNavigation from '../CeComp/RefNavigation';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Button} from 'react-native-elements';
-import MyHeader from '../UsResuables/MyHeader';
-import {FruityTiles} from './UsHome';
-import Loop from '../UsResuables/looping';
+import MyHeader from '../CeComp/CeHeader';
+import {FruityTiles} from './CeHome';
+import Loop from '../CeComp/CeFlatList';
 
 export const Cart = (props) => {
   useEffect(() => {
     convertObjectToArray();
-  }, [props.UsCart.items]);
+  }, [props.CeCart.items]);
   const [HorizontalCartArray, setHorizontalCartArray] = useState([]);
-  const goBack = () => RefNavigation.Navigate('UsHome');
+  const goBack = () => RefNavigation.Navigate('CeHome');
 
   const convertObjectToArray = () => {
-    const CartArray = Object.keys(props.UsCart.items);
-    let UsArr = [];
+    const CartArray = Object.keys(props.CeCart.items);
+    let CeArr = [];
     CartArray.forEach((element) => {
-      UsArr.push(props.UsCart.items[element]);
+      CeArr.push(props.CeCart.items[element]);
     });
-    setHorizontalCartArray(UsArr);
+    setHorizontalCartArray(CeArr);
   };
 
-  const UsGoToSingleProduct = (item) => {
-    props.UssetCurrentProductAction(item);
-    RefNavigation.Navigate('UsSingleProduct');
+  const CeGoToSingleProduct = (item) => {
+    props.CesetCurrentProductAction(item);
+    RefNavigation.Navigate('CeSingleProduct');
   };
 
   const infoScreen = () => RefNavigation.Navigate('InfoScreen');
@@ -61,12 +61,12 @@ export const Cart = (props) => {
                     return (
                       <FruityTiles
                         item={item}
-                        UsGoToSingleProduct={UsGoToSingleProduct}
-                        UsFavs={props.UsFavs}
-                        UsRemoveFavAct={(i) => props.UsremoveFavAction(i)}
-                        UsSetFavAct={(i) => props.UssetFavAction(i)}
-                        UsaddCartAction={(i) => props.UsaddCartAction(i)}
-                        UsremoveCartAction={(i) => props.UsremoveCartAction(i)}
+                        CeGoToSingleProduct={CeGoToSingleProduct}
+                        CeFavs={props.CeFavs}
+                        CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
+                        CeSetFavAct={(i) => props.CesetFavAction(i)}
+                        CeaddCartAction={(i) => props.CeaddCartAction(i)}
+                        CeremoveCartAction={(i) => props.CeremoveCartAction(i)}
                         isCart={true}
                       />
                     );
@@ -128,7 +128,7 @@ export const Cart = (props) => {
                 shadowOpacity: 0.2,
                 shadowRadius: 1.41,
               }}>
-              ${props.UsTotal}
+              ${props.CeTotal}
             </Text>
           </View>
           <View
@@ -164,7 +164,7 @@ export const Cart = (props) => {
             <Button
               raised
               onPress={infoScreen}
-              disabled={props.UsTotal < 1}
+              disabled={props.CeTotal < 1}
               title="PROCEED TO CHECKOUT"
               titleStyle={{
                 fontSize: Measurements.width * 0.05,
@@ -192,15 +192,15 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  UsCart: state.UsCartReducer,
-  UsTotal: state.UsCartReducer.totalAmount,
-  UsFavs: state.UsToggleFav,
+  CeCart: state.CeCartReducer,
+  CeTotal: state.CeCartReducer.totalAmount,
+  CeFavs: state.CeToggleFav,
 });
 
 export default connect(mapStateToProps, {
-  UssetFavAction,
-  UsremoveFavAction,
-  UsremoveCartAction,
-  UsaddCartAction,
-  UssetCurrentProductAction,
+  CesetFavAction,
+  CeremoveFavAction,
+  CeremoveCartAction,
+  CeaddCartAction,
+  CesetCurrentProductAction,
 })(Cart);

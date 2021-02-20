@@ -4,13 +4,13 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Navigator from './UsResuables/RefNavigation';
-import UsHome from './Main/UsHome';
-import UsSingleProduct from './Main/UsSingleProduct';
-import UsCart from './Main/UsCart';
-import InfoScreen from './Main/InfoScreen';
-import SearchJuiceFruitify from './Main/SearchJuiceFruitify';
-import UsFavourites from './Main/UsFavourites';
+import Navigator from './CeComp/RefNavigation';
+import CeHome from './CeSrc/CeHome';
+// import CeSingleProduct from './Main/CeSingleProduct';
+// import CeCart from './Main/CeCart';
+// import InfoScreen from './Main/InfoScreen';
+// import SearchJuiceFruitify from './Main/SearchJuiceFruitify';
+// import CeFavourites from './Main/CeFavourites';
 const Stack = createStackNavigator();
 
 function Routes(props) {
@@ -20,20 +20,20 @@ function Routes(props) {
         Navigator.InitializeRefNavigation(ref);
       }}>
       <Stack.Navigator
-        initialRouteName="UsHome"
+        initialRouteName="CeHome"
         screenOptions={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
-        <Stack.Screen name="UsHome" component={UsHome} />
-        <Stack.Screen name="UsSingleProduct" component={UsSingleProduct} />
-        <Stack.Screen name="UsCart" component={UsCart} />
-        <Stack.Screen
+        <Stack.Screen name="CeHome" component={CeHome} />
+        {/* <Stack.Screen name="CeSingleProduct" component={CeSingleProduct} /> */}
+        {/* <Stack.Screen name="CeCart" component={CeCart} /> */}
+        {/* <Stack.Screen
           name="SearchJuiceFruitify"
           component={SearchJuiceFruitify}
-        />
-        <Stack.Screen name="UsFavourites" component={UsFavourites} />
-        <Stack.Screen name="InfoScreen" component={InfoScreen} />
+        /> */}
+        {/* <Stack.Screen name="CeFavourites" component={CeFavourites} /> */}
+        {/* <Stack.Screen name="InfoScreen" component={InfoScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

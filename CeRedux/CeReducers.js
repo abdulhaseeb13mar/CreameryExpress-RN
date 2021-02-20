@@ -10,7 +10,7 @@ let cart = {
   totalAmount: 0,
 };
 
-const UsCartReducer = (st = cart, action) => {
+const CeCartReducer = (st = cart, action) => {
   let prev_items = {...st.items};
   switch (action.type) {
     case ActionTypes.ADD_ITEM_CART:
@@ -63,7 +63,7 @@ const UsCartReducer = (st = cart, action) => {
   return st;
 };
 
-const UsUserReducer = (st = userState, action) => {
+const CeUserReducer = (st = userState, action) => {
   switch (action.type) {
     case ActionTypes.USER_INFO:
       st = Object.assign({}, st, {...action.payload});
@@ -75,7 +75,7 @@ const UsUserReducer = (st = userState, action) => {
   return st;
 };
 
-const UsCrntPrdtReducer = (state = crntPrdtState, action) => {
+const CeCrntPrdtReducer = (state = crntPrdtState, action) => {
   switch (action.type) {
     case ActionTypes.SET_CURRENT_PRODUCT:
       state = Object.assign({}, state, {...action.payload});
@@ -87,7 +87,7 @@ const UsCrntPrdtReducer = (state = crntPrdtState, action) => {
   return state;
 };
 
-const UsToggleFav = (state = FavItems, action) => {
+const CeToggleFav = (state = FavItems, action) => {
   switch (action.type) {
     case ActionTypes.SET_FAVOURITE:
       let isUnique = true;
@@ -112,8 +112,8 @@ const UsToggleFav = (state = FavItems, action) => {
 };
 
 export default combineReducers({
-  UsCartReducer,
-  UsToggleFav,
-  UsCrntPrdtReducer,
-  UsUserReducer,
+  CeCartReducer,
+  CeToggleFav,
+  CeCrntPrdtReducer,
+  CeUserReducer,
 });

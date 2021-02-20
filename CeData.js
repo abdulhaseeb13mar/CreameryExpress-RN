@@ -3,7 +3,7 @@ export default {
     {
       id: '1',
       names: 'Almond',
-      images: "require('./assets/images/ice1.png')",
+      images: require('./CeAssets/ice1.png'),
       price: '3',
       details:
         'Roasted Almond Ice Cream is a perfect treat for sweet lovers. It has an unforgettable nutty flavour, which is drool worthy! The slow roasted almonds makes this dish more soft and creamy as well as crunchy',
@@ -11,7 +11,7 @@ export default {
     {
       id: '2',
       names: 'Blueberry',
-      images: "require('./assets/images/ice2.png')",
+      images: require('./CeAssets/ice2.png'),
       price: '6',
       details:
         'blueberries, a handful of frozen berries makes a delicious treat as well. Because eating frozen blueberries too quickly can cause discomfor',
@@ -19,7 +19,7 @@ export default {
     {
       id: '3',
       names: 'Bubblegum',
-      images: "require('./assets/images/ice3.png')",
+      images: require('./CeAssets/ice3.png'),
       price: '5',
       details:
         "bubblegum and loaded with colorful gumballs! I've always loved going to get ice cream. ... This ice cream is so creamy and delicious",
@@ -27,7 +27,7 @@ export default {
     {
       id: '4',
       names: 'Chocolate',
-      images: "require('./assets/images/ice4.png')",
+      images: require('./CeAssets/ice4.png'),
       price: '1.5',
       details:
         'Chocolate ice cream is a flavour of ice cream which is the second most common flavour of ice cream, after vanilla. Chocolate ice cream is made by blending in cocoa powder in along with the eggs (optional), cream',
@@ -35,7 +35,7 @@ export default {
     {
       id: '5',
       names: 'Dark Chocolate',
-      images: "require('./assets/images/ice5.png')",
+      images: require('./CeAssets/ice5.png'),
       price: '2.6',
       details:
         'This dark chocolate ice cream is dark, creamy, and rich. It’s a great base for a multitude of combinations. I’m thinking it needs a salted caramel drizzle.',
@@ -43,7 +43,7 @@ export default {
     {
       id: '6',
       names: 'Honeycomb',
-      images: "require('./assets/images/ice6.png')",
+      images: require('./CeAssets/ice6.png'),
       price: '3.5',
       details:
         'honeycomb bars in a food bag and crush into chunks with a rolling pin. Put a large mixing bowl in the freezer to chill',
@@ -51,7 +51,7 @@ export default {
     {
       id: '7',
       names: 'Rocky Road',
-      images: "require('./assets/images/ice7.png')",
+      images: require('./CeAssets/ice7.png'),
       price: '5',
       details:
         'Rocky road ice cream is a chocolate flavored ice cream. Though there are variations from the original flavor, it is traditionally composed of chocolate ice cream, nuts',
@@ -59,7 +59,7 @@ export default {
     {
       id: '8',
       names: 'Vanilla',
-      images: "require('./assets/images/ice8.png')",
+      images: require('./CeAssets/ice8.png'),
       price: '1.5',
       details:
         'Vanilla is frequently used to flavor ice cream, especially in North America, Asia, and Europe. Vanilla ice cream, like other flavors of ice cream, was originally created by cooling a mixture made of cream, sugar',
@@ -67,7 +67,7 @@ export default {
     {
       id: '9',
       names: 'Coffee',
-      images: "require('./assets/images/ice9.png')",
+      images: require('./CeAssets/ice9.png'),
       price: '2.6',
       details:
         'offee Ice Cream is made just like old-fashioned ice cream! It starts with a custard that is blended with heavy cream and churned in an ice cream maker for a sensationally smooth and creamy dessert',
@@ -75,7 +75,7 @@ export default {
     {
       id: '10',
       names: 'Carrot Cake Ice Cream',
-      images: "require('./assets/images/ice10.png')",
+      images: require('./CeAssets/ice10.png'),
       price: '3.5',
       details:
         'carrot cake, only better! We use all the ingredients of traditional carrot cake-—cream cheese, cinnamon, brown sugar, carrots, golden raisins, walnuts,',
@@ -83,7 +83,7 @@ export default {
     {
       id: '11',
       names: 'Chocolate Chip',
-      images: "require('./assets/images/ice11.png')",
+      images: require('./CeAssets/ice11.png'),
       price: '3.5',
       details:
         'Chocolate chip cookie dough ice cream is a popular ice cream flavor in which unbaked chunks of chocolate chip cookie dough are embedded in vanilla flavored ice cream',
@@ -91,7 +91,7 @@ export default {
     {
       id: '12',
       names: 'Cranberry',
-      images: "require('./assets/images/ice12.png')",
+      images: require('./CeAssets/ice12.png'),
       price: '5',
       details:
         'cranberries and water over medium heat until berries pop, about 15 minutes. Strain; discard seeds and skins. Cool completely. Fill cylinder of ice cream freezer',
@@ -99,7 +99,7 @@ export default {
     {
       id: '13',
       names: 'Donnatella',
-      images: "require('./assets/images/ice13.png')",
+      images: require('./CeAssets/ice13.png'),
       price: '1.5',
       details:
         "Donatella ice cream with PreGel. We used Lloyd's of Pennsylvania as an ice cream base. Donatella is a chocolate hazelnut ice cream. We mixed 100 grams of hazelnut paste. We blended this and then put it into our B12E batch freezer from Electro Freeze",
@@ -107,7 +107,7 @@ export default {
     {
       id: '14',
       names: 'Mango',
-      images: "require('./assets/images/ice14.png')",
+      images: require('./CeAssets/ice14.png'),
       price: '3.5',
       details:
         'King of Fruits! Mangoes impart a luscious creamy texture and rich flavour to this delicious frozen dessert. This ice-cream is available in the market but can also be made at home easily using fresh sweet mangoes or frozen mango',
@@ -115,7 +115,7 @@ export default {
     {
       id: '15',
       names: 'Nut',
-      images: "require('./assets/images/ice15.png')",
+      images: require('./CeAssets/ice15.png'),
       price: '5',
       details:
         'nuts Ice cream is a frozen dessert usually made from dairy products, such as milk and cream, and often combined with fruits or other ingredients and flavors. ... Pear; Peppermint; Pistachio, also referred to as pistachio nut, is an ice cream flavor made with pistachio nuts or flavoring.',
@@ -123,7 +123,7 @@ export default {
     {
       id: '16',
       names: 'Peanut Butter',
-      images: "require('./assets/images/ice16.png')",
+      images: require('./CeAssets/ice16.png'),
       price: '1.5',
       details:
         'peanut butter ice cream is a special treat especially when topped with dark fudge sauce! Use creamy peanut butter for a smooth ice cream or crunchy for a bit of texture',
@@ -131,7 +131,7 @@ export default {
     {
       id: '17',
       names: 'Pineapple',
-      images: "require('./assets/images/ice17.png')",
+      images: require('./CeAssets/ice17.png'),
       price: '2.6',
       details:
         'This light and fluffy pineapple ice cream tastes tangy and bright, as refreshing as sorbet but ultra creamy',
@@ -139,7 +139,7 @@ export default {
     {
       id: '18',
       names: 'Strawberry',
-      images: "require('./assets/images/ice18.png')",
+      images: require('./CeAssets/ice18.png'),
       price: '3.5',
       details:
         'Strawberry ice cream is a flavor of ice cream made with strawberry or strawberry flavoring. It is made by blending in fresh strawberries or strawberry flavoring',
@@ -147,7 +147,7 @@ export default {
     {
       id: '19',
       names: 'Strawberry Cheesecake',
-      images: "require('./assets/images/ice19.png')",
+      images: require('./CeAssets/ice19.png'),
       price: '2.5',
       details:
         'STRAWBERRY CHEESECAKE ICE CREAM WITH A CREAMY CHEESECAKE ICE CREAM BASE, AND A SWEET STRAWBERRY SAUCE AND BUTTERY GRAHAM CRACKER CRUST SWIRLED THROUGHOUT. ITS LIKE A DELICIOUS SLICE OF STRAWBERRY CHEESECAKE ALL WRAPPED UP IN A BIG BOWL OF ICE CREAM',
@@ -155,7 +155,7 @@ export default {
     {
       id: '20',
       names: 'Butter pecan',
-      images: "require('./assets/images/ice20.png')",
+      images: require('./CeAssets/ice20.png'),
       price: '3',
       details:
         'Butter pecan is a flavor, prominent especially in the United States, in cakes, cookies, and ice cream. Roasted pecans, butter, and vanilla flavor are used in butter pecan baked goods. Butter pecan ice cream is smooth vanilla ice cream with a slight buttery flavor',
@@ -163,7 +163,7 @@ export default {
     {
       id: '21',
       names: 'Maple Walnut',
-      images: "require('./assets/images/ice21.png')",
+      images: require('./CeAssets/ice21.png'),
       price: '5',
       details:
         'Maple Walnut Ice Cream combines the best sweet maple flavour with the slightly bitter of walnuts. In this recipe Glen uses super dark late harvest maple syrup, that is packed with deep rich flavour',
