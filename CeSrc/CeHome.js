@@ -24,7 +24,7 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyHeader from '../CeComp/CeHeader';
-import Search from '../CeComp/CeSearchBar';
+import {Button} from 'react-native-elements';
 
 function CeHome(props) {
   useEffect(() => {
@@ -103,7 +103,7 @@ function CeHome(props) {
                 </Text>
               </TouchableOpacity>
             </View>
-            {/* <Loop
+            <Loop
               data={mostPopular}
               renderItem={({item}) => (
                 <HorizontalList
@@ -114,7 +114,7 @@ function CeHome(props) {
                   // CeSetFavAct={(i) => props.CesetFavAction(i)}
                 />
               )}
-            /> */}
+            />
           </View>
           <View style={{...border}}>
             <View
@@ -147,7 +147,7 @@ function CeHome(props) {
                 </Text>
               </TouchableOpacity>
             </View>
-            {/* <Loop
+            <Loop
               data={newArrival}
               renderItem={({item}) => (
                 <HorizontalList
@@ -158,7 +158,7 @@ function CeHome(props) {
                   // CeSetFavAct={(i) => props.CesetFavAction(i)}
                 />
               )}
-            /> */}
+            />
           </View>
         </ScrollView>
         <View
@@ -168,7 +168,39 @@ function CeHome(props) {
             borderTopLeftRadius: 45,
             backgroundColor: `rgba(${colors.rgb_Primary},1)`,
             position: 'relative',
+            paddingHorizontal: H_W.width * 0.07,
+            justifyContent: 'center',
+            borderWidth: 2,
+            borderColor: 'black',
+            borderBottomColor: 'transparent',
           }}>
+          <View style={{...border}}>
+            <Text
+              style={{
+                ...border,
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: 18,
+              }}>
+              Total: $12.50
+            </Text>
+            <Button
+              title="Order Now"
+              raised
+              titleStyle={{
+                color: colors.primary,
+                textShadowColor: '#bcbcbc',
+                textShadowOffset: {width: 2, height: 2},
+                textShadowRadius: 2,
+              }}
+              buttonStyle={{
+                ...border,
+                backgroundColor: 'white',
+                borderRadius: 10,
+              }}
+              containerStyle={{...border, marginTop: 8, width: '40%'}}
+            />
+          </View>
           <ImageBackground
             source={require('../CeAssets/ice22.png')}
             style={{
@@ -263,8 +295,8 @@ export const HorizontalList = ({item, op}) => {
 };
 
 const border = {
-  borderColor: 'red',
-  borderWidth: 1,
+  // borderColor: 'red',
+  // borderWidth: 1,
 };
 
 const styles = StyleSheet.create({
