@@ -127,6 +127,13 @@ export const HorizontalList = ({item, op}) => {
           borderRadius: 50,
           backgroundColor: 'white',
           elevation: 4,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.23,
+          shadowRadius: 2.62,
         }}>
         <View
           style={{
