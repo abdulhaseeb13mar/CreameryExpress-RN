@@ -16,6 +16,7 @@ import Data from '../CeData';
 import Loop from '../CeComp/CeFlatList';
 import RefNavigation from '../CeComp/RefNavigation';
 import {connect} from 'react-redux';
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   CesetCurrentProductAction,
   CeremoveFavAction,
@@ -26,11 +27,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyHeader from '../CeComp/CeHeader';
 import {Button} from 'react-native-elements';
 
-function CeHome(props) {
+function CeHome(props) { 
   useEffect(() => {
     fill_Popular_Arrival();
   }, []);
-
+  const insets = useSafeAreaInsets();
   const [mostPopular, setMostPopular] = useState([]);
   const [newArrival, setNewArrival] = useState([]);
 
@@ -163,6 +164,7 @@ function CeHome(props) {
         </ScrollView>
         <View
           style={{
+            marginBottom:-insets.bottom,
             height: H_W.height * 0.2,
             borderTopRightRadius: 45,
             borderTopLeftRadius: 45,
