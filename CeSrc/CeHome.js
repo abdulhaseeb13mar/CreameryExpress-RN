@@ -56,7 +56,8 @@ function CeHome(props) {
   };
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
-      <ScrollView bounces={false} style={{flex: 1}}>
+      <View style={{flex: 1, ...border}}>
+        {/* <ScrollView bounces={false} style={{flex: 1}}> */}
         <MyHeader
           leftIcon={Ionicons}
           leftIconName="ios-heart-outline"
@@ -72,19 +73,7 @@ function CeHome(props) {
             />
           }
         />
-        {/* <View
-          style={{
-            marginVertical: H_W.height * 0.02,
-          }}>
-          <Loop
-            data={UScategories}
-            renderItem={({item}) => (
-              <FruitifyTabs item={item} Cecc={Cecc} Cect={Cect} />
-            )}
-          />
-        </View> */}
-
-        <View style={{...border}}>
+        {/* <View style={{...border}}>
           <Loop
             data={newArrival}
             renderItem={({item}) => (
@@ -97,8 +86,9 @@ function CeHome(props) {
               />
             )}
           />
-        </View>
-      </ScrollView>
+        </View> */}
+        {/* </ScrollView> */}
+      </View>
     </WrapperScreen>
   );
 }
@@ -199,8 +189,8 @@ export const HorizontalList = ({item, op}) => {
 };
 
 const border = {
-  // borderColor: 'red',
-  // borderWidth: 1,
+  borderColor: 'red',
+  borderWidth: 2,
 };
 
 const styles = StyleSheet.create({
