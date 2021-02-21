@@ -8,6 +8,8 @@ target 'CreameryExpress' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-safe-area', :path => '../node_modules/react-native-safe-area'
+
   target 'CreameryExpressTests' do
     inherit! :complete
     # Pods for testing

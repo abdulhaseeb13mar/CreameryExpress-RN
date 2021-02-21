@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import WrapperScreen from '../CeComp/WrapperScreen';
 import {colors} from '../CeComp/CeColor';
-import {H_W} from '../CeComp/CeDim';
+import {get_dimensions, H_W} from '../CeComp/CeDim';
 import Data from '../CeData';
 import Loop from '../CeComp/CeFlatList';
 import RefNavigation from '../CeComp/RefNavigation';
@@ -26,10 +26,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyHeader from '../CeComp/CeHeader';
 import Search from '../CeComp/CeSearchBar';
 
+get_dimensions();
+
 function CeHome(props) {
   useEffect(() => {
     fill_Popular_Arrival();
   }, []);
+
   const [mostPopular, setMostPopular] = useState([]);
   const [newArrival, setNewArrival] = useState([]);
 
@@ -58,7 +61,6 @@ function CeHome(props) {
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
       <View style={{flex: 1}}>
-        {console.log(StatusBar.currentHeight)}
         <View
           style={{
             borderColor: 'green',
