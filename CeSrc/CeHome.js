@@ -57,22 +57,25 @@ function CeHome(props) {
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
       <View style={{flex: 1, ...border}}>
-        {/* <ScrollView bounces={false} style={{flex: 1}}> */}
-        <MyHeader
-          leftIcon={Ionicons}
-          leftIconName="ios-heart-outline"
-          leftIconAction={CeGotoFavourites}
-          rightIconAction={CeGotoCart}
-          rightIcon={Feather}
-          rightIconName="search"
-          Title={
-            <Ionicons
-              color={'black'}
-              size={H_W.width * 0.09}
-              name="ios-ice-cream-outline"
-            />
-          }
-        />
+        <View style={{borderColor: 'green', borderWidth: 1.5}}>
+          {/* <ScrollView bounces={false} style={{flex: 1}}> */}
+          <MyHeader
+            leftIcon={Ionicons}
+            leftIconName="ios-heart-outline"
+            leftIconAction={CeGotoFavourites}
+            rightIconAction={CeGotoCart}
+            rightIcon={Feather}
+            rightIconName="search"
+            Title={
+              <Ionicons
+                color={'black'}
+                size={H_W.width * 0.09}
+                name="ios-ice-cream-outline"
+              />
+            }
+          />
+        </View>
+        <View style={{borderColor: 'blue', borderWidth: 1.5}} />
         {/* <View style={{...border}}>
           <Loop
             data={newArrival}
