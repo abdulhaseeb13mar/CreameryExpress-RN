@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
+  StatusBar,
 } from 'react-native';
 import WrapperScreen from '../CeComp/WrapperScreen';
 import {colors} from '../CeComp/CeColor';
@@ -56,7 +57,8 @@ function CeHome(props) {
   };
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
-      <View style={{flex: 1, ...border}}>
+      <View style={{flex: 1}}>
+        {console.log(StatusBar.currentHeight)}
         <View
           style={{
             borderColor: 'green',
