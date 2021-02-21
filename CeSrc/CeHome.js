@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import WrapperScreen from '../CeComp/WrapperScreen';
 import {colors} from '../CeComp/CeColor';
-import {get_dimensions, H_W} from '../CeComp/CeDim';
+import {H_W} from '../CeComp/CeDim';
 import Data from '../CeData';
 import Loop from '../CeComp/CeFlatList';
 import RefNavigation from '../CeComp/RefNavigation';
@@ -25,8 +25,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyHeader from '../CeComp/CeHeader';
 import Search from '../CeComp/CeSearchBar';
-
-get_dimensions();
 
 function CeHome(props) {
   useEffect(() => {
@@ -60,14 +58,8 @@ function CeHome(props) {
   };
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
-      <View style={{flex: 1}}>
-        <View
-          style={{
-            borderColor: 'green',
-            borderWidth: 1.5,
-            height: H_W.height * 0.5,
-          }}>
-          {/* <ScrollView bounces={false} style={{flex: 1}}> */}
+      <View style={{...border, flex: 1}}>
+        <ScrollView bounces={false} style={{flex: 1}}>
           <MyHeader
             leftIcon={Ionicons}
             leftIconName="ios-heart-outline"
@@ -83,29 +75,113 @@ function CeHome(props) {
               />
             }
           />
-        </View>
+          <View style={{...border}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingHorizontal: H_W.width * 0.065,
+              }}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 27,
+                }}>
+                Top Flavours
+              </Text>
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    color: colors.lightGrey3,
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    borderBottomColor: colors.lightGrey3,
+                    borderBottomWidth: 2,
+                  }}>
+                  View all
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {/* <Loop
+              data={mostPopular}
+              renderItem={({item}) => (
+                <HorizontalList
+                  item={item}
+                  // CeGoToSingleProduct={CeGoToSingleProduct}
+                  // CeFavs={props.CeFavs}
+                  // CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
+                  // CeSetFavAct={(i) => props.CesetFavAction(i)}
+                />
+              )}
+            /> */}
+          </View>
+          <View style={{...border}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingHorizontal: H_W.width * 0.065,
+                // marginTop: H_W.height * 0.01,
+                // marginBottom: H_W.height * 0.008,
+                ...border,
+              }}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 27,
+                }}>
+                New Flavours
+              </Text>
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    color: colors.lightGrey3,
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    borderBottomColor: colors.lightGrey3,
+                    borderBottomWidth: 2,
+                  }}>
+                  View all
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {/* <Loop
+              data={newArrival}
+              renderItem={({item}) => (
+                <HorizontalList
+                  item={item}
+                  // CeGoToSingleProduct={CeGoToSingleProduct}
+                  // CeFavs={props.CeFavs}
+                  // CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
+                  // CeSetFavAct={(i) => props.CesetFavAction(i)}
+                />
+              )}
+            /> */}
+          </View>
+        </ScrollView>
         <View
           style={{
-            borderColor: 'blue',
-            borderWidth: 1.5,
-            height: H_W.height * 0.5,
-          }}
-        />
-        {/* <View style={{...border}}>
-          <Loop
-            data={newArrival}
-            renderItem={({item}) => (
-              <HorizontalList
-                item={item}
-                // CeGoToSingleProduct={CeGoToSingleProduct}
-                // CeFavs={props.CeFavs}
-                // CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
-                // CeSetFavAct={(i) => props.CesetFavAction(i)}
-              />
-            )}
+            height: H_W.height * 0.2,
+            borderTopRightRadius: 45,
+            borderTopLeftRadius: 45,
+            backgroundColor: `rgba(${colors.rgb_Primary},1)`,
+            position: 'relative',
+          }}>
+          <ImageBackground
+            source={require('../CeAssets/ice22.png')}
+            style={{
+              width: H_W.width * 0.4,
+              height: H_W.height * 0.3,
+              position: 'absolute',
+              right: 0,
+              top: -H_W.height * 0.05,
+              ...border,
+            }}
+            resizeMode="contain"
           />
-        </View> */}
-        {/* </ScrollView> */}
+        </View>
       </View>
     </WrapperScreen>
   );
@@ -113,25 +189,13 @@ function CeHome(props) {
 
 export const HorizontalList = ({item, op}) => {
   return (
-    // <TouchableOpacity
-    //   onPress={() => op(item)}
-    //   style={{
-    //     flexDirection: 'column-reverse',
-    //     alignItems: 'center',
-    //     width: H_W.width * 0.5,
-    //     justifyContent: 'center',
-    //     ...border,
-    //   }}>
     <View
       style={{
         backgroundColor: 'white',
-
         margin: 20,
-        ...border,
       }}>
       <View
         style={{
-          ...border,
           borderRadius: 50,
           backgroundColor: 'white',
           elevation: 4,
@@ -149,9 +213,7 @@ export const HorizontalList = ({item, op}) => {
             paddingLeft: H_W.width * 0.06,
             paddingBottom: H_W.height * 0.02,
             width: H_W.width * 0.5,
-
             borderRadius: 50,
-            // width: '100%',
           }}>
           <ImageBackground
             source={item.images}
@@ -161,21 +223,19 @@ export const HorizontalList = ({item, op}) => {
               alignSelf: 'flex-end',
               marginTop: -10,
               marginRight: -10,
-              ...border,
             }}
             resizeMode="contain"
           />
           <View>
             <Text
               style={{
-                fontSize: H_W.width * 0.05,
+                fontSize: 19,
                 color: colors.primary,
                 fontWeight: 'bold',
                 width: '100%',
                 textShadowColor: '#bcbcbc',
                 textShadowOffset: {width: 2, height: 2},
                 textShadowRadius: 2,
-                ...border,
               }}>
               {item.names}
             </Text>
@@ -187,13 +247,11 @@ export const HorizontalList = ({item, op}) => {
               justifyContent: 'space-between',
               marginTop: 5,
               width: '100%',
-              ...border,
             }}>
             <Text
               style={{
-                fontSize: H_W.width * 0.055,
+                fontSize: 18,
                 fontWeight: 'bold',
-                ...border,
               }}>
               ${item.price}
             </Text>
@@ -201,14 +259,12 @@ export const HorizontalList = ({item, op}) => {
         </View>
       </View>
     </View>
-
-    // </TouchableOpacity>
   );
 };
 
 const border = {
   borderColor: 'red',
-  borderWidth: 2,
+  borderWidth: 1,
 };
 
 const styles = StyleSheet.create({
@@ -261,7 +317,7 @@ const styles = StyleSheet.create({
   EP_1: {},
   HomeTabsText: {
     fontWeight: '700',
-    fontSize: H_W.width * 0.047,
+    // fontSize: H_W.width * 0.047,
   },
   HomeTabsWrapper: {
     display: 'flex',
