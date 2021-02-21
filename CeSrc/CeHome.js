@@ -84,9 +84,9 @@ function CeHome(props) {
           />
         </View> */}
 
-        <View style={styles.listingWrapper}>
+        <View style={{...border}}>
           <Loop
-            data={mostPopular}
+            data={newArrival}
             renderItem={({item}) => (
               <HorizontalList
                 item={item}
@@ -105,71 +105,89 @@ function CeHome(props) {
 
 export const HorizontalList = ({item, op}) => {
   return (
-    <TouchableOpacity
-      onPress={() => op(item)}
+    // <TouchableOpacity
+    //   onPress={() => op(item)}
+    //   style={{
+    //     flexDirection: 'column-reverse',
+    //     alignItems: 'center',
+    //     width: H_W.width * 0.5,
+    //     justifyContent: 'center',
+    //     ...border,
+    //   }}>
+    <View
       style={{
+        backgroundColor: 'white',
+
         margin: 20,
-        flexDirection: 'column-reverse',
-        alignItems: 'center',
-        width: H_W.width * 0.56,
-        justifyContent: 'center',
         ...border,
       }}>
       <View
         style={{
-          backgroundColor: `rgba(${colors.rgb_Primary},0.3)`,
-          paddingHorizontal: H_W.width * 0.06,
-          width: '100%',
-          paddingTop: H_W.height * 0.07,
-          marginTop: -H_W.height * 0.065,
-          paddingBottom: H_W.height * 0.04,
-          borderRadius: 30,
           ...border,
+          borderRadius: 50,
+          backgroundColor: 'white',
+          elevation: 4,
         }}>
-        <View>
-          <Text
-            style={{
-              fontSize: H_W.width * 0.05,
-              color: colors.primary,
-              fontWeight: 'bold',
-              width: '100%',
-              textShadowColor: '#bcbcbc',
-              textShadowOffset: {width: 2, height: 2},
-              textShadowRadius: 2,
-              ...border,
-            }}>
-            {item.names}
-          </Text>
-        </View>
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginTop: 10,
-            width: '100%',
-            ...border,
+            backgroundColor: `rgba(${colors.rgb_Primary},0.3)`,
+            paddingLeft: H_W.width * 0.06,
+            paddingBottom: H_W.height * 0.02,
+            width: H_W.width * 0.5,
+
+            borderRadius: 50,
+            // width: '100%',
           }}>
-          <Text
+          <ImageBackground
+            source={item.images}
             style={{
-              fontSize: H_W.width * 0.055,
-              fontWeight: 'bold',
+              width: H_W.width * 0.28,
+              height: H_W.height * 0.13,
+              alignSelf: 'flex-end',
+              marginTop: -10,
+              marginRight: -10,
+              ...border,
+            }}
+            resizeMode="contain"
+          />
+          <View>
+            <Text
+              style={{
+                fontSize: H_W.width * 0.05,
+                color: colors.primary,
+                fontWeight: 'bold',
+                width: '100%',
+                textShadowColor: '#bcbcbc',
+                textShadowOffset: {width: 2, height: 2},
+                textShadowRadius: 2,
+                ...border,
+              }}>
+              {item.names}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginTop: 5,
+              width: '100%',
               ...border,
             }}>
-            ${item.price}
-          </Text>
+            <Text
+              style={{
+                fontSize: H_W.width * 0.055,
+                fontWeight: 'bold',
+                ...border,
+              }}>
+              ${item.price}
+            </Text>
+          </View>
         </View>
       </View>
-      <ImageBackground
-        source={item.images}
-        style={{
-          width: H_W.width * 0.46,
-          height: H_W.height * 0.22,
-          ...border,
-        }}
-        resizeMode="contain"
-      />
-    </TouchableOpacity>
+    </View>
+
+    // </TouchableOpacity>
   );
 };
 
