@@ -57,7 +57,12 @@ function CeHome(props) {
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
       <View style={{flex: 1, ...border}}>
-        <View style={{borderColor: 'green', borderWidth: 1.5}}>
+        <View
+          style={{
+            borderColor: 'green',
+            borderWidth: 1.5,
+            height: H_W.height * 0.5,
+          }}>
           {/* <ScrollView bounces={false} style={{flex: 1}}> */}
           <MyHeader
             leftIcon={Ionicons}
@@ -75,7 +80,13 @@ function CeHome(props) {
             }
           />
         </View>
-        <View style={{borderColor: 'blue', borderWidth: 1.5}} />
+        <View
+          style={{
+            borderColor: 'blue',
+            borderWidth: 1.5,
+            height: H_W.height * 0.5,
+          }}
+        />
         {/* <View style={{...border}}>
           <Loop
             data={newArrival}
