@@ -10,7 +10,7 @@ import {
 import {H_W} from '../CeComp/CeDim';
 import WrapperScreen from '../CeComp/WrapperScreen';
 import {connect} from 'react-redux';
-import {Button} from 'react-native-elements';
+import {Button, SocialIcon} from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../CeComp/CeColor';
 import NavigationRef from '../CeComp/RefNavigation';
@@ -28,6 +28,7 @@ function SingleProduct(props) {
     checkIfFav();
   }, []);
   const insets = useSafeAreaInsets();
+  const HEIGHT = H_W.height - (insets.bottom + insets.top);
   const [fav, setFav] = useState(false);
   const [sugarLevel, setSugarLevel] = useState('0%');
   const [size, setSize] = useState({size: 'Small', amount: '125ml'});
@@ -60,39 +61,13 @@ function SingleProduct(props) {
   const CeGoBack = () => NavigationRef.Navigate('CeHome');
 
   return (
-    <WrapperScreen style={{backgroundColor: colors.primary}}>
-      <View style={styles.singleProduct_SL20}>
-        <View style={styles.singleProduct_SL19}>
-          <View
-            style={{
-              width: H_W.width * 0.14,
-              height: H_W.width * 0.14,
-              backgroundColor: 'white',
-              borderRadius: 50,
-              opacity: 0.2,
-              transform: [{scaleX: 4.5}, {scaleY: 4}],
-              position: 'absolute',
-              bottom: 0,
-              right: 0,
-            }}
-          />
-          <View
-            style={{
-              width: H_W.width * 0.14,
-              height: H_W.width * 0.14,
-              backgroundColor: 'white',
-              borderRadius: 50,
-              opacity: 0.2,
-              transform: [{scaleX: 3.0}, {scaleY: 2.7}],
-              position: 'absolute',
-              top: 0,
-              left: 0,
-            }}
-          />
+    <WrapperScreen style={{backgroundColor: `rgba(${colors.rgb_Primary},0.6)`}}>
+      <View style={styles.singleProduct_CE20}>
+        <View style={styles.singleProduct_CE19}>
           <ImageBackground
             resizeMode="contain"
             source={CeProduct.images}
-            style={styles.singleProduct_SL18}>
+            style={styles.singleProduct_CE18}>
             <View
               style={{
                 marginTop: H_W.height * 0.025,
@@ -101,7 +76,7 @@ function SingleProduct(props) {
                 justifyContent: 'space-between',
               }}>
               <TouchableOpacity
-                style={styles.singleProduct_SL17}
+                style={styles.singleProduct_CE17}
                 onPress={CeGoBack}>
                 <Entypo
                   name="chevron-left"
@@ -138,25 +113,52 @@ function SingleProduct(props) {
         </View>
         <View
           style={{
-            ...styles.singleProduct_SL16,
+            ...styles.singleProduct_CE16,
             marginBottom: -insets.bottom,
             paddingBottom: insets.bottom,
             height: H_W.height * 0.62 - insets.bottom,
           }}>
-          <View style={styles.singleProduct_SL15}>
-            <View style={styles.singleProduct_SL14} />
-            <View style={styles.singleProduct_SL13}>
-              <Text style={styles.singleProduct_SL12}>{CeProduct.names}</Text>
-              <Text style={styles.singleProduct_SL11}>
-                $
-                <Text style={{fontSize: H_W.width * 0.09}}>
-                  {CeProduct.price}
+          <View style={styles.singleProduct_CE15}>
+            <View style={{...border, marginTop: -HEIGHT * 0.04}}>
+              <View style={styles.singleProduct_CE2}>
+                <TouchableOpacity
+                  onPress={
+                    props.CeCart[CeProduct.id] !== undefined &&
+                    props.CeCart[CeProduct.id] !== 0
+                      ? CeRemoveFromCart
+                      : null
+                  }>
+                  <Entypo name="minus" color="black" size={H_W.width * 0.065} />
+                </TouchableOpacity>
+                <Text style={styles.singleProduct_CE23}>
+                  {props.CeCart[CeProduct.id] !== undefined &&
+                  props.CeCart[CeProduct.id] !== 0
+                    ? props.CeCart[CeProduct.id].added
+                    : '0'}
                 </Text>
-              </Text>
+                <TouchableOpacity onPress={CeAddToCart}>
+                  <Entypo name="plus" color="black" size={H_W.width * 0.065} />
+                </TouchableOpacity>
+              </View>
+              {/* <View
+                style={{
+                  // ...border,
+                  width: H_W.width * 0.17,
+                  height: H_W.width * 0.17,
+                  borderRadius: 50,
+                  backgroundColor: `rgba(${colors.rgb_Primary},0.5)`,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'flex-end',
+                  // elevation: 3,
+                  // borderColor: 'black',
+                  borderWidth: 1.5,
+                }}>
+                <Entypo name="plus" color="black" size={30} />
+              </View> */}
             </View>
-            <View style={styles.singleProduct_SL21}>
-              <Text style={styles.singleProduct_SL22}>{CeProduct.rating}</Text>
-            </View>
+            <Text style={styles.singleProduct_CE12}>{CeProduct.names}</Text>
+            <Text style={styles.singleProduct_CE11}>${CeProduct.price}</Text>
           </View>
           <View style={{width: '100%'}}>
             <Text
@@ -166,13 +168,13 @@ function SingleProduct(props) {
               }}>
               Sugar Level
             </Text>
-            <View style={styles.singleProduct_SL10}>
+            <View style={styles.singleProduct_CE10}>
               {['0%', '25%', '50%', '100%'].map((i, index) => (
                 <TouchableOpacity
                   onPress={() => setSugarLevel(i)}
                   key={index}
                   style={{
-                    ...styles.singleProduct_SL9_1,
+                    ...styles.singleProduct_CE9_1,
                     borderColor:
                       sugarLevel === i
                         ? `rgba(${colors.rgb_Primary}, 0.25)`
@@ -184,7 +186,7 @@ function SingleProduct(props) {
                   }}>
                   <Text
                     style={{
-                      ...styles.singleProduct_SL8,
+                      ...styles.singleProduct_CE8,
                       color: sugarLevel === i ? colors.primary : 'black',
                     }}>
                     {i}
@@ -201,7 +203,7 @@ function SingleProduct(props) {
               }}>
               Choice Size
             </Text>
-            <View style={styles.singleProduct_SL10}>
+            <View style={styles.singleProduct_CE10}>
               {[
                 {size: 'Small', amount: '125ml'},
                 {size: 'Medium', amount: '175ml'},
@@ -211,7 +213,7 @@ function SingleProduct(props) {
                   onPress={() => setSize(i)}
                   key={index}
                   style={{
-                    ...styles.singleProduct_SL9_2,
+                    ...styles.singleProduct_CE9_2,
                     borderColor:
                       size.size === i.size
                         ? `rgba(${colors.rgb_Primary}, 0.25)`
@@ -223,14 +225,14 @@ function SingleProduct(props) {
                   }}>
                   <Text
                     style={{
-                      ...styles.singleProduct_SL8,
+                      ...styles.singleProduct_CE8,
                       color: size.size === i.size ? colors.primary : 'black',
                     }}>
                     {i.size}
                   </Text>
                   <Text
                     style={{
-                      ...styles.singleProduct_SL7,
+                      ...styles.singleProduct_CE7,
                       color: size.size === i.size ? colors.primary : 'black',
                     }}>
                     {i.amount}
@@ -239,80 +241,48 @@ function SingleProduct(props) {
               ))}
             </View>
           </View>
-          <View style={styles.singleProduct_SL3}>
-            <View style={styles.singleProduct_SL2}>
-              <TouchableOpacity
-                onPress={
-                  props.CeCart[CeProduct.id] !== undefined &&
-                  props.CeCart[CeProduct.id] !== 0
-                    ? CeRemoveFromCart
-                    : null
-                }>
-                <Ionicons
-                  name="ios-remove"
-                  color={colors.lightGrey3}
-                  size={H_W.width * 0.065}
-                />
-              </TouchableOpacity>
-              <Text style={styles.singleProduct_SL23}>
-                {props.CeCart[CeProduct.id] !== undefined &&
-                props.CeCart[CeProduct.id] !== 0
-                  ? props.CeCart[CeProduct.id].added
-                  : '0'}
-              </Text>
-              <TouchableOpacity onPress={CeAddToCart}>
-                <Ionicons
-                  name="ios-add"
-                  color={colors.lightGrey3}
-                  size={H_W.width * 0.065}
-                />
-              </TouchableOpacity>
-            </View>
-            <Button
-              raised
-              title="Add To Cart"
-              onPress={CeAddToCart}
-              buttonStyle={styles.singleProduct_SL1}
-              containerStyle={{width: '50%'}}
-            />
-          </View>
         </View>
       </View>
     </WrapperScreen>
   );
 }
 
+const border = {
+  // borderColor: 'red',
+  // borderWidth: 1,
+};
+
 const styles = StyleSheet.create({
-  singleProduct_SL23: {
+  singleProduct_CE23: {
     fontWeight: 'bold',
     fontSize: H_W.width * 0.056,
   },
-  singleProduct_SL22: {
+  singleProduct_CE22: {
     marginLeft: H_W.width * 0.045,
     color: colors.darkGray,
     fontSize: H_W.width * 0.045,
     fontWeight: 'bold',
   },
-  singleProduct_SL21: {
+  singleProduct_CE21: {
     width: H_W.width * 0.55,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
   },
-  singleProduct_SL20: {
+  singleProduct_CE20: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  singleProduct_SL19: {
+  singleProduct_CE19: {
     width: H_W.width,
     // height: H_W.height * 0.37,
     height: '37%',
     paddingHorizontal: H_W.width * 0.05,
   },
-  singleProduct_SL18: {width: '100%', height: '100%'},
-  singleProduct_SL16: {
+  singleProduct_CE18: {width: '100%', height: '100%'},
+  singleProduct_CE16: {
     backgroundColor: 'white',
     borderTopRightRadius: 60,
     borderTopLeftRadius: 60,
@@ -320,49 +290,45 @@ const styles = StyleSheet.create({
     width: H_W.width,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: H_W.height * 0.01,
-    paddingHorizontal: H_W.width * 0.035,
+    // paddingTop: H_W.height * 0.01,
+    paddingHorizontal: H_W.width * 0.05,
     paddingBottom: H_W.height * 0.02,
   },
-  singleProduct_SL15: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  singleProduct_CE15: {
     width: '100%',
     marginBottom: H_W.height * 0.01,
+    ...border,
   },
-  singleProduct_SL14: {
+  singleProduct_CE14: {
     width: H_W.width * 0.25,
     height: H_W.width * 0.0095,
     backgroundColor: colors.darkGray,
     opacity: 0.5,
   },
-  singleProduct_SL13: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: H_W.height * 0.02,
-  },
-  singleProduct_SL12: {
-    width: '75%',
+  singleProduct_CE12: {
+    width: '85%',
     fontWeight: 'bold',
-    fontSize: H_W.width * 0.08,
-    color: colors.primary,
+    fontSize: 28,
+    color: 'black',
+    ...border,
   },
-  singleProduct_SL11: {
+  singleProduct_CE11: {
     fontWeight: 'bold',
-    alignSelf: 'flex-end',
     color: colors.primary,
-    fontSize: H_W.width * 0.058,
+    fontSize: 26,
+    // textShadowColor: '#bcbcbc',
+    textShadowColor: 'black',
+    textShadowOffset: {width: 1.2, height: 1.2},
+    textShadowRadius: 2,
   },
-  singleProduct_SL10: {
+  singleProduct_CE10: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingVertical: H_W.height * 0.01,
   },
-  singleProduct_SL9_1: {
+  singleProduct_CE9_1: {
     width: H_W.width * 0.2,
     borderColor: colors.lightBackground2,
     borderWidth: 1,
@@ -372,7 +338,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: H_W.height * 0.015,
   },
-  singleProduct_SL9_2: {
+  singleProduct_CE9_2: {
     width: H_W.width * 0.2,
     borderColor: colors.lightBackground2,
     borderWidth: 1,
@@ -382,22 +348,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: H_W.height * 0.01,
   },
-  singleProduct_SL8: {
+  singleProduct_CE8: {
     fontWeight: 'bold',
     marginVertical: H_W.height * 0.002,
     fontSize: H_W.width * 0.042,
   },
 
-  singleProduct_SL7: {
+  singleProduct_CE7: {
     fontSize: H_W.width * 0.035,
     color: colors.lightGrey3,
     fontWeight: 'bold',
   },
-  singleProduct_SL6: {
+  singleProduct_CE6: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  singleProduct_SL5: {
+  singleProduct_CE5: {
     width: '100%',
     maxHeight: H_W.height * 0.15,
     backgroundColor: 'white',
@@ -412,32 +378,34 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
   },
-  singleProduct_SL4: {
+  singleProduct_CE4: {
     fontSize: H_W.width * 0.037,
     lineHeight: H_W.height * 0.027,
     color: colors.lightGrey3,
     fontWeight: 'bold',
   },
-  singleProduct_SL3: {
+  singleProduct_CE3: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
     marginTop: H_W.height * 0.008,
   },
-  singleProduct_SL2: {
-    borderColor: colors.lightBackground2,
-    borderWidth: 1,
-    backgroundColor: 'white',
+  singleProduct_CE2: {
+    borderColor: 'black',
+    borderWidth: 1.5,
+    backgroundColor: `rgba(255,255,255,0.4)`,
     borderRadius: 50,
     width: '40%',
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: H_W.width * 0.015,
     paddingVertical: H_W.height * 0.01,
+    // elevation: 2,
   },
-  singleProduct_SL1: {
+  singleProduct_CE1: {
     height: H_W.height * 0.07,
     backgroundColor: colors.primary,
     borderRadius: 10,
