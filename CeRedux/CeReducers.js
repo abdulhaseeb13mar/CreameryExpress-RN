@@ -3,12 +3,12 @@ import {combineReducers} from 'redux';
 
 const userState = {};
 let crntPrdtState = {
-  id: '6',
-  names: 'Honeycomb',
-  images: require('../CeAssets/ice12.png'),
-  price: '3.5',
+  id: '5',
+  names: 'Dark Chocolate',
+  images: require('../CeAssets/ice5.png'),
+  price: '2.6',
   details:
-    'honeycomb bars in a food bag and crush into chunks with a rolling pin. Put a large mixing bowl in the freezer to chill',
+    'This dark chocolate ice cream is dark, creamy, and rich. It’s a great base for a multitude of combinations. I’m thinking it needs a salted caramel drizzle.',
 };
 let FavItems = [];
 let cart = {
