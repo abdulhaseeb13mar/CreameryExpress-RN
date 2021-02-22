@@ -135,10 +135,8 @@ function CeHome(props) {
                 paddingRight: H_W.width * 0.065,
                 ...border,
               }}>
-              <Text
+              <View
                 style={{
-                  fontWeight: '500',
-                  fontSize: 27,
                   borderTopRightRadius: 50,
                   borderBottomRightRadius: 50,
                   paddingLeft: H_W.width * 0.065,
@@ -146,8 +144,14 @@ function CeHome(props) {
                   elevation: 2,
                   backgroundColor: colors.primary,
                 }}>
-                New Flavours
-              </Text>
+                <Text
+                  style={{
+                    fontWeight: '500',
+                    fontSize: 27,
+                  }}>
+                  New Flavours
+                </Text>
+              </View>
               <TouchableOpacity>
                 <Text
                   style={{
