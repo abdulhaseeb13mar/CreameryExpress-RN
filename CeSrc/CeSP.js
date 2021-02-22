@@ -14,6 +14,7 @@ import {Button} from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../CeComp/CeColor';
 import NavigationRef from '../CeComp/RefNavigation';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
   CeremoveFavAction,
@@ -26,7 +27,7 @@ function SingleProduct(props) {
   useEffect(() => {
     checkIfFav();
   }, []);
-
+  const insets = useSafeAreaInsets();
   const [fav, setFav] = useState(false);
   const [sugarLevel, setSugarLevel] = useState('0%');
   const [size, setSize] = useState({size: 'Small', amount: '125ml'});
@@ -135,7 +136,13 @@ function SingleProduct(props) {
             </View>
           </ImageBackground>
         </View>
-        <View style={styles.singleProduct_SL16}>
+        <View
+          style={{
+            ...styles.singleProduct_SL16,
+            marginBottom: -insets.bottom,
+            paddingBottom: insets.bottom,
+            height: H_W.height * 0.62 + insets.bottom,
+          }}>
           <View style={styles.singleProduct_SL15}>
             <View style={styles.singleProduct_SL14} />
             <View style={styles.singleProduct_SL13}>
@@ -309,7 +316,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    height: '62%',
+    // height: '62%',
     width: H_W.width,
     alignItems: 'center',
     justifyContent: 'space-between',
