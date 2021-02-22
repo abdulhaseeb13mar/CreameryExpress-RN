@@ -237,7 +237,7 @@ function SingleProduct(props) {
             ))}
           </View>
 
-          <ScrollView style={{...border}}>
+          <View style={{...border, marginBottom: '10%'}}>
             <Text
               style={{
                 fontSize: 15,
@@ -247,7 +247,7 @@ function SingleProduct(props) {
               }}>
               {CeProduct.details}
             </Text>
-          </ScrollView>
+          </View>
         </View>
       </View>
     </WrapperScreen>
@@ -255,8 +255,8 @@ function SingleProduct(props) {
 }
 
 const border = {
-  // borderColor: 'red',
-  // borderWidth: 1,
+  borderColor: 'red',
+  borderWidth: 1,
 };
 
 const styles = StyleSheet.create({
