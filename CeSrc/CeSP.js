@@ -6,6 +6,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {H_W} from '../CeComp/CeDim';
 import WrapperScreen from '../CeComp/WrapperScreen';
@@ -190,6 +191,7 @@ function SingleProduct(props) {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
+              marginBottom: HEIGHT * 0.02,
             }}>
             {flavours.map((fl, index) => (
               <View
@@ -234,6 +236,17 @@ function SingleProduct(props) {
               </View>
             ))}
           </View>
+
+          <ScrollView style={{...border}}>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: 'bold',
+                color: colors.darkGray,
+              }}>
+              {CeProduct.details}
+            </Text>
+          </ScrollView>
         </View>
       </View>
     </WrapperScreen>
@@ -241,8 +254,8 @@ function SingleProduct(props) {
 }
 
 const border = {
-  borderColor: 'red',
-  borderWidth: 1,
+  // borderColor: 'red',
+  // borderWidth: 1,
 };
 
 const styles = StyleSheet.create({
@@ -282,7 +295,7 @@ const styles = StyleSheet.create({
     // height: '62%',
     width: H_W.width,
     alignItems: 'center',
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
     // paddingTop: H_W.height * 0.01,
     paddingHorizontal: H_W.width * 0.05,
     paddingBottom: H_W.height * 0.02,
