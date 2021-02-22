@@ -141,7 +141,7 @@ function SingleProduct(props) {
             ...styles.singleProduct_SL16,
             marginBottom: -insets.bottom,
             paddingBottom: insets.bottom,
-            height: H_W.height * 0.62 + insets.bottom,
+            height: H_W.height * 0.62 - insets.bottom,
           }}>
           <View style={styles.singleProduct_SL15}>
             <View style={styles.singleProduct_SL14} />
@@ -314,8 +314,8 @@ const styles = StyleSheet.create({
   singleProduct_SL18: {width: '100%', height: '100%'},
   singleProduct_SL16: {
     backgroundColor: 'white',
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+    borderTopRightRadius: 60,
+    borderTopLeftRadius: 60,
     // height: '62%',
     width: H_W.width,
     alignItems: 'center',
