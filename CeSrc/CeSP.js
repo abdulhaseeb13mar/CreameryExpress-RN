@@ -243,6 +243,7 @@ function SingleProduct(props) {
                 fontSize: 15,
                 fontWeight: 'bold',
                 color: colors.darkGray,
+                lineHeight: 22,
               }}>
               {CeProduct.details}
             </Text>
