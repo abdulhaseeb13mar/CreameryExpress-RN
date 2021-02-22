@@ -81,12 +81,18 @@ function CeHome(props) {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                paddingHorizontal: H_W.width * 0.065,
+                paddingRight: H_W.width * 0.065,
               }}>
               <Text
                 style={{
-                  fontWeight: 'bold',
+                  fontWeight: '500',
                   fontSize: 27,
+                  borderTopRightRadius: 50,
+                  borderBottomRightRadius: 50,
+                  paddingLeft: H_W.width * 0.065,
+                  paddingRight: H_W.width * 0.02,
+                  elevation: 2,
+                  backgroundColor: colors.primary,
                 }}>
                 Top Flavours
               </Text>
@@ -122,15 +128,19 @@ function CeHome(props) {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                paddingHorizontal: H_W.width * 0.065,
-                // marginTop: H_W.height * 0.01,
-                // marginBottom: H_W.height * 0.008,
+                paddingRight: H_W.width * 0.065,
                 ...border,
               }}>
               <Text
                 style={{
-                  fontWeight: 'bold',
+                  fontWeight: '500',
                   fontSize: 27,
+                  borderTopRightRadius: 50,
+                  borderBottomRightRadius: 50,
+                  paddingLeft: H_W.width * 0.065,
+                  paddingRight: H_W.width * 0.02,
+                  elevation: 2,
+                  backgroundColor: colors.primary,
                 }}>
                 New Flavours
               </Text>
