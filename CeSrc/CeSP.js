@@ -18,6 +18,7 @@ import {colors} from '../CeComp/CeColor';
 import NavigationRef from '../CeComp/RefNavigation';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   CeremoveFavAction,
   CesetFavAction,
@@ -35,6 +36,7 @@ function SingleProduct(props) {
   const [fav, setFav] = useState(false);
   const [sugarLevel, setSugarLevel] = useState('0%');
   const [flavours, setFlavours] = useState([]);
+  const [CurrFlavours, setCurrFlavours] = useState({});
   const [size, setSize] = useState({size: 'Small', amount: '125ml'});
   const CeProduct = props.CeProduct;
 
@@ -50,7 +52,7 @@ function SingleProduct(props) {
         fc++;
       }
     }
-    console.log(fl);
+    setCurrFlavours(fl[0]);
     setFlavours(fl);
   };
   // const checkIfFav = () => {
@@ -62,12 +64,13 @@ function SingleProduct(props) {
   //   }
   // };
 
-  const CeAddToCart = () => props.CeaddCartAction(CeProduct);
-
+  const CeAddToCart = () => {
+    console.log({...CeProduct, flavor: CurrFlavours});
+    props.CeaddCartAction({...CeProduct, flavor: CurrFlavours});
+  };
   const CeRemoveFromCart = () => {
-    props.CeCart[CeProduct.id] !== undefined
-      ? props.CeremoveCartAction(CeProduct)
-      : null;
+    props.CeCart[`${CeProduct.id}_${CurrFlavours.topping}`].added !== 0 &&
+      props.CeremoveCartAction({...CeProduct, flavor: CurrFlavours});
   };
 
   const toggleFav = () => {
@@ -120,42 +123,77 @@ function SingleProduct(props) {
           }}>
           <View style={styles.singleProduct_CE15}>
             <View style={{...border, marginTop: -HEIGHT * 0.04}}>
-              {/* <View style={styles.singleProduct_CE2}>
+              {props.CeCart[`${CeProduct.id}_${CurrFlavours.topping}`] !==
+                undefined &&
+              props.CeCart[`${CeProduct.id}_${CurrFlavours.topping}`] !== 0 ? (
+                <View style={styles.singleProduct_CE2}>
+                  <TouchableOpacity
+                    style={{
+                      zIndex: 100,
+                      width: '26%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      alignSelf: 'stretch',
+                      borderColor: 'red',
+                      borderWidth: 1,
+                      borderRadius: 50,
+                      height: HEIGHT * 0.05,
+                    }}
+                    onPress={CeRemoveFromCart}>
+                    <Entypo
+                      name="minus"
+                      color="black"
+                      size={H_W.width * 0.065}
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.singleProduct_CE23}>
+                    {props.CeCart[`${CeProduct.id}_${CurrFlavours.topping}`] !==
+                      undefined &&
+                    props.CeCart[`${CeProduct.id}_${CurrFlavours.topping}`] !==
+                      0
+                      ? props.CeCart[`${CeProduct.id}_${CurrFlavours.topping}`]
+                          .added
+                      : '0'}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={CeAddToCart}
+                    style={{
+                      zIndex: 100,
+                      width: '26%',
+                      alignItems: 'center',
+                      alignSelf: 'stretch',
+                      justifyContent: 'center',
+                      borderColor: 'red',
+                      borderWidth: 1,
+                      borderRadius: 50,
+                      height: HEIGHT * 0.05,
+                    }}>
+                    <Entypo
+                      name="plus"
+                      color="black"
+                      size={H_W.width * 0.065}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ) : (
                 <TouchableOpacity
-                  onPress={
-                    props.CeCart[CeProduct.id] !== undefined &&
-                    props.CeCart[CeProduct.id] !== 0
-                      ? CeRemoveFromCart
-                      : null
-                  }>
-                  <Entypo name="minus" color="black" size={H_W.width * 0.065} />
+                  onPress={CeAddToCart}
+                  style={{
+                    // ...border,
+                    width: H_W.width * 0.17,
+                    height: H_W.width * 0.17,
+                    borderRadius: 50,
+                    backgroundColor: `rgba(${colors.rgb_Primary},0.5)`,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    alignSelf: 'flex-end',
+                    // elevation: 3,
+                    // borderColor: 'black',
+                    borderWidth: 1.5,
+                  }}>
+                  <Entypo name="plus" color="black" size={30} />
                 </TouchableOpacity>
-                <Text style={styles.singleProduct_CE23}>
-                  {props.CeCart[CeProduct.id] !== undefined &&
-                  props.CeCart[CeProduct.id] !== 0
-                    ? props.CeCart[CeProduct.id].added
-                    : '0'}
-                </Text>
-                <TouchableOpacity onPress={CeAddToCart}>
-                  <Entypo name="plus" color="black" size={H_W.width * 0.065} />
-                </TouchableOpacity>
-              </View> */}
-              <View
-                style={{
-                  // ...border,
-                  width: H_W.width * 0.17,
-                  height: H_W.width * 0.17,
-                  borderRadius: 50,
-                  backgroundColor: `rgba(${colors.rgb_Primary},0.5)`,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  alignSelf: 'flex-end',
-                  // elevation: 3,
-                  // borderColor: 'black',
-                  borderWidth: 1.5,
-                }}>
-                <Entypo name="plus" color="black" size={30} />
-              </View>
+              )}
             </View>
             <Text
               style={{...styles.singleProduct_CE12, marginTop: HEIGHT * 0.02}}>
@@ -163,7 +201,6 @@ function SingleProduct(props) {
             </Text>
             <Text style={styles.singleProduct_CE11}>${CeProduct.price}</Text>
           </View>
-
           <View
             style={{
               ...border,
@@ -201,6 +238,7 @@ function SingleProduct(props) {
                   {fl.topping}
                 </Text>
                 <TouchableOpacity
+                  onPress={() => setCurrFlavours(fl)}
                   style={{
                     // ...border,
                     width: H_W.width * 0.11,
@@ -212,7 +250,15 @@ function SingleProduct(props) {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Entypo name="plus" color="black" size={22} />
+                  {CurrFlavours.topping === fl.topping ? (
+                    <FontAwesome
+                      name="circle"
+                      color={colors.primary}
+                      size={22}
+                    />
+                  ) : (
+                    <Entypo name="plus" color="black" size={22} />
+                  )}
                 </TouchableOpacity>
               </View>
             ))}
@@ -389,8 +435,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: H_W.width * 0.015,
-    paddingVertical: H_W.height * 0.01,
+    // paddingHorizontal: H_W.width * 0.015,
+    // paddingVertical: H_W.height * 0.01,
     // elevation: 2,
   },
   singleProduct_CE1: {
