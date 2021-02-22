@@ -12,6 +12,7 @@ import WrapperScreen from '../CeComp/WrapperScreen';
 import {connect} from 'react-redux';
 import {Button, SocialIcon} from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Data from '../CeData';
 import {colors} from '../CeComp/CeColor';
 import NavigationRef from '../CeComp/RefNavigation';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -25,23 +26,40 @@ import {
 
 function SingleProduct(props) {
   useEffect(() => {
-    checkIfFav();
+    fetchFlavours();
+    // checkIfFav();
   }, []);
   const insets = useSafeAreaInsets();
   const HEIGHT = H_W.height - (insets.bottom + insets.top);
   const [fav, setFav] = useState(false);
   const [sugarLevel, setSugarLevel] = useState('0%');
+  const [flavours, setFlavours] = useState([]);
   const [size, setSize] = useState({size: 'Small', amount: '125ml'});
   const CeProduct = props.CeProduct;
 
-  const checkIfFav = () => {
-    for (let us = 0; us < props.CeFavs.length; us++) {
-      if (props.CeFavs[us].id === CeProduct.id) {
-        setFav(true);
-        break;
+  const fetchFlavours = () => {
+    let fc = 0;
+    let fl = [];
+    for (let ce = 0; ce < Data.topping.length; ce++) {
+      if (Data.topping[ce].productid === CeProduct.id) {
+        fl.push(Data.topping[ce]);
+        if (fc === 3) {
+          break;
+        }
+        fc++;
       }
     }
+    console.log(fl);
+    setFlavours(fl);
   };
+  // const checkIfFav = () => {
+  //   for (let us = 0; us < props.CeFavs.length; us++) {
+  //     if (props.CeFavs[us].id === CeProduct.id) {
+  //       setFav(true);
+  //       break;
+  //     }
+  //   }
+  // };
 
   const CeAddToCart = () => props.CeaddCartAction(CeProduct);
 
@@ -120,7 +138,7 @@ function SingleProduct(props) {
           }}>
           <View style={styles.singleProduct_CE15}>
             <View style={{...border, marginTop: -HEIGHT * 0.04}}>
-              <View style={styles.singleProduct_CE2}>
+              {/* <View style={styles.singleProduct_CE2}>
                 <TouchableOpacity
                   onPress={
                     props.CeCart[CeProduct.id] !== undefined &&
@@ -139,8 +157,8 @@ function SingleProduct(props) {
                 <TouchableOpacity onPress={CeAddToCart}>
                   <Entypo name="plus" color="black" size={H_W.width * 0.065} />
                 </TouchableOpacity>
-              </View>
-              {/* <View
+              </View> */}
+              <View
                 style={{
                   // ...border,
                   width: H_W.width * 0.17,
@@ -155,91 +173,66 @@ function SingleProduct(props) {
                   borderWidth: 1.5,
                 }}>
                 <Entypo name="plus" color="black" size={30} />
-              </View> */}
+              </View>
             </View>
-            <Text style={styles.singleProduct_CE12}>{CeProduct.names}</Text>
+            <Text
+              style={{...styles.singleProduct_CE12, marginTop: HEIGHT * 0.02}}>
+              {CeProduct.names}
+            </Text>
             <Text style={styles.singleProduct_CE11}>${CeProduct.price}</Text>
           </View>
-          <View style={{width: '100%'}}>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: H_W.width * 0.048,
-              }}>
-              Sugar Level
-            </Text>
-            <View style={styles.singleProduct_CE10}>
-              {['0%', '25%', '50%', '100%'].map((i, index) => (
-                <TouchableOpacity
-                  onPress={() => setSugarLevel(i)}
-                  key={index}
+
+          <View
+            style={{
+              ...border,
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            {flavours.map((fl, index) => (
+              <View
+                key={index}
+                style={{
+                  alignSelf:
+                    index === 0
+                      ? 'flex-start'
+                      : index === 1
+                      ? 'center'
+                      : 'flex-end',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  borderRadius: 50,
+                  paddingLeft: H_W.width * 0.03,
+                  backgroundColor: colors.primary,
+                  elevation: 2,
+                  marginVertical: HEIGHT * 0.002,
+                }}>
+                <Text
                   style={{
-                    ...styles.singleProduct_CE9_1,
-                    borderColor:
-                      sugarLevel === i
-                        ? `rgba(${colors.rgb_Primary}, 0.25)`
-                        : colors.lightGrey3,
-                    backgroundColor:
-                      sugarLevel === i
-                        ? `rgba(${colors.rgb_Primary}, 0.25)`
-                        : 'white',
+                    fontSize: 17,
+                    fontWeight: 'bold',
+                    marginRight: H_W.width * 0.02,
                   }}>
-                  <Text
-                    style={{
-                      ...styles.singleProduct_CE8,
-                      color: sugarLevel === i ? colors.primary : 'black',
-                    }}>
-                    {i}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-          <View style={{width: '100%'}}>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: H_W.width * 0.048,
-              }}>
-              Choice Size
-            </Text>
-            <View style={styles.singleProduct_CE10}>
-              {[
-                {size: 'Small', amount: '125ml'},
-                {size: 'Medium', amount: '175ml'},
-                {size: 'Large', amount: '250ml'},
-              ].map((i, index) => (
+                  {fl.topping}
+                </Text>
                 <TouchableOpacity
-                  onPress={() => setSize(i)}
-                  key={index}
                   style={{
-                    ...styles.singleProduct_CE9_2,
-                    borderColor:
-                      size.size === i.size
-                        ? `rgba(${colors.rgb_Primary}, 0.25)`
-                        : colors.lightGrey3,
-                    backgroundColor:
-                      size.size === i.size
-                        ? `rgba(${colors.rgb_Primary}, 0.25)`
-                        : 'white',
+                    // ...border,
+                    width: H_W.width * 0.11,
+                    height: H_W.width * 0.11,
+                    borderRadius: 50,
+                    backgroundColor: 'white',
+                    borderColor: colors.primary,
+                    borderWidth: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}>
-                  <Text
-                    style={{
-                      ...styles.singleProduct_CE8,
-                      color: size.size === i.size ? colors.primary : 'black',
-                    }}>
-                    {i.size}
-                  </Text>
-                  <Text
-                    style={{
-                      ...styles.singleProduct_CE7,
-                      color: size.size === i.size ? colors.primary : 'black',
-                    }}>
-                    {i.amount}
-                  </Text>
+                  <Entypo name="plus" color="black" size={22} />
                 </TouchableOpacity>
-              ))}
-            </View>
+              </View>
+            ))}
           </View>
         </View>
       </View>
@@ -248,8 +241,8 @@ function SingleProduct(props) {
 }
 
 const border = {
-  // borderColor: 'red',
-  // borderWidth: 1,
+  borderColor: 'red',
+  borderWidth: 1,
 };
 
 const styles = StyleSheet.create({
@@ -289,7 +282,7 @@ const styles = StyleSheet.create({
     // height: '62%',
     width: H_W.width,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     // paddingTop: H_W.height * 0.01,
     paddingHorizontal: H_W.width * 0.05,
     paddingBottom: H_W.height * 0.02,
@@ -394,7 +387,7 @@ const styles = StyleSheet.create({
   singleProduct_CE2: {
     borderColor: 'black',
     borderWidth: 1.5,
-    backgroundColor: `rgba(255,255,255,0.4)`,
+    backgroundColor: 'rgba(255,255,255,0.6)',
     borderRadius: 50,
     width: '40%',
     flexDirection: 'row',
