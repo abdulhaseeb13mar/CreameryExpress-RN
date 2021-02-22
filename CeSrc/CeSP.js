@@ -95,36 +95,17 @@ function SingleProduct(props) {
                 justifyContent: 'space-between',
               }}>
               <TouchableOpacity
-                style={styles.singleProduct_CE17}
+                style={{
+                  ...border,
+                  backgroundColor: 'white',
+                  borderRadius: 50,
+                  elevation: 3,
+                }}
                 onPress={CeGoBack}>
                 <Entypo
                   name="chevron-left"
-                  color={'white'}
+                  color="black"
                   size={H_W.width * 0.08}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={toggleFav}
-                style={{
-                  width: H_W.width * 0.12,
-                  height: H_W.width * 0.12,
-                  borderRadius: 50,
-                  backgroundColor: 'white',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  elevation: 3,
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 1,
-                  },
-                  shadowOpacity: 0.22,
-                  shadowRadius: 2.22,
-                }}>
-                <Ionicons
-                  name={fav ? 'ios-heart' : 'ios-heart-outline'}
-                  color="red"
-                  size={H_W.width * 0.06}
                 />
               </TouchableOpacity>
             </View>
