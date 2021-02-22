@@ -190,7 +190,7 @@ function SingleProduct(props) {
                   paddingLeft: H_W.width * 0.03,
                   backgroundColor: colors.primary,
                   elevation: 2,
-                  marginVertical: HEIGHT * 0.002,
+                  marginVertical: '2%',
                 }}>
                 <Text
                   style={{
