@@ -6,7 +6,7 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import Navigator from './CeComp/RefNavigation';
 import CeHome from './CeSrc/CeHome';
-// import CeSingleProduct from './Main/CeSingleProduct';
+import CeSP from './CeSrc/CeSP';
 // import CeCart from './Main/CeCart';
 // import InfoScreen from './Main/InfoScreen';
 // import SearchJuiceFruitify from './Main/SearchJuiceFruitify';
@@ -20,13 +20,13 @@ function Routes(props) {
         Navigator.InitializeRefNavigation(ref);
       }}>
       <Stack.Navigator
-        initialRouteName="CeHome"
+        initialRouteName="CeSP"
         screenOptions={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
         <Stack.Screen name="CeHome" component={CeHome} />
-        {/* <Stack.Screen name="CeSingleProduct" component={CeSingleProduct} /> */}
+        <Stack.Screen name="CeSP" component={CeSP} />
         {/* <Stack.Screen name="CeCart" component={CeCart} /> */}
         {/* <Stack.Screen
           name="SearchJuiceFruitify"

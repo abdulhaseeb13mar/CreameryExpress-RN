@@ -2,7 +2,14 @@ import ActionTypes from './actionTypes';
 import {combineReducers} from 'redux';
 
 const userState = {};
-let crntPrdtState = {};
+let crntPrdtState = {
+  id: '6',
+  names: 'Honeycomb',
+  images: require('../CeAssets/ice12.png'),
+  price: '3.5',
+  details:
+    'honeycomb bars in a food bag and crush into chunks with a rolling pin. Put a large mixing bowl in the freezer to chill',
+};
 let FavItems = [];
 let cart = {
   items: {},

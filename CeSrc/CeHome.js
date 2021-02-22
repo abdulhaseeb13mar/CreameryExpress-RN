@@ -7,7 +7,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  StatusBar,
 } from 'react-native';
 import WrapperScreen from '../CeComp/WrapperScreen';
 import {colors} from '../CeComp/CeColor';
@@ -16,7 +15,7 @@ import Data from '../CeData';
 import Loop from '../CeComp/CeFlatList';
 import RefNavigation from '../CeComp/RefNavigation';
 import {connect} from 'react-redux';
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   CesetCurrentProductAction,
   CeremoveFavAction,
@@ -27,7 +26,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MyHeader from '../CeComp/CeHeader';
 import {Button} from 'react-native-elements';
 
-function CeHome(props) { 
+function CeHome(props) {
   useEffect(() => {
     fill_Popular_Arrival();
   }, []);
@@ -164,7 +163,7 @@ function CeHome(props) {
         </ScrollView>
         <View
           style={{
-            marginBottom:-insets.bottom,
+            marginBottom: -insets.bottom,
             height: H_W.height * 0.2,
             borderTopRightRadius: 45,
             borderTopLeftRadius: 45,

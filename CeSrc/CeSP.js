@@ -139,7 +139,7 @@ function SingleProduct(props) {
           <View style={styles.singleProduct_SL15}>
             <View style={styles.singleProduct_SL14} />
             <View style={styles.singleProduct_SL13}>
-              <Text style={styles.singleProduct_SL12}>{CeProduct.name}</Text>
+              <Text style={styles.singleProduct_SL12}>{CeProduct.names}</Text>
               <Text style={styles.singleProduct_SL11}>
                 $
                 <Text style={{fontSize: H_W.width * 0.09}}>
@@ -300,7 +300,8 @@ const styles = StyleSheet.create({
   },
   singleProduct_SL19: {
     width: H_W.width,
-    height: H_W.height * 0.37,
+    // height: H_W.height * 0.37,
+    height: '37%',
     paddingHorizontal: H_W.width * 0.05,
   },
   singleProduct_SL18: {width: '100%', height: '100%'},
@@ -308,7 +309,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    height: H_W.height * 0.62,
+    height: '62%',
     width: H_W.width,
     alignItems: 'center',
     justifyContent: 'space-between',
