@@ -2,14 +2,7 @@ import ActionTypes from './actionTypes';
 import {combineReducers} from 'redux';
 
 const userState = {};
-let crntPrdtState = {
-  id: '5',
-  names: 'Dark Chocolate',
-  images: require('../CeAssets/ice5.png'),
-  price: '2.6',
-  details:
-    'This dark chocolate ice cream is dark, creamy, and rich. It’s a great base for a multitude of combinations. I’m thinking it needs a salted caramel drizzle.',
-};
+let crntPrdtState = {};
 let FavItems = [];
 let cart = {
   items: {},

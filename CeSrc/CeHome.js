@@ -54,7 +54,7 @@ function CeHome(props) {
   const CeGotoSearch = () => RefNavigation.Navigate('SearchJuiceFruitify');
   const CeGoToSingleProduct = (item) => {
     props.CesetCurrentProductAction(item);
-    RefNavigation.NavigateAndReset('CeSingleProduct');
+    RefNavigation.NavigateAndReset('CeSP');
   };
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
@@ -108,7 +108,7 @@ function CeHome(props) {
               renderItem={({item}) => (
                 <HorizontalList
                   item={item}
-                  // CeGoToSingleProduct={CeGoToSingleProduct}
+                  CeGoToSingleProduct={CeGoToSingleProduct}
                   // CeFavs={props.CeFavs}
                   // CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
                   // CeSetFavAct={(i) => props.CesetFavAction(i)}
@@ -152,7 +152,7 @@ function CeHome(props) {
               renderItem={({item}) => (
                 <HorizontalList
                   item={item}
-                  // CeGoToSingleProduct={CeGoToSingleProduct}
+                  CeGoToSingleProduct={CeGoToSingleProduct}
                   // CeFavs={props.CeFavs}
                   // CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
                   // CeSetFavAct={(i) => props.CesetFavAction(i)}
@@ -220,14 +220,15 @@ function CeHome(props) {
   );
 }
 
-export const HorizontalList = ({item, op}) => {
+export const HorizontalList = ({item, CeGoToSingleProduct}) => {
   return (
     <View
       style={{
         backgroundColor: 'white',
         margin: 20,
       }}>
-      <View
+      <TouchableOpacity
+        onPress={() => CeGoToSingleProduct(item)}
         style={{
           borderRadius: 50,
           backgroundColor: 'white',
@@ -290,7 +291,7 @@ export const HorizontalList = ({item, op}) => {
             </Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
