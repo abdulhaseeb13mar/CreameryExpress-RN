@@ -255,8 +255,8 @@ function SingleProduct(props) {
 }
 
 const border = {
-  borderColor: 'red',
-  borderWidth: 1,
+  // borderColor: 'red',
+  // borderWidth: 1,
 };
 
 const styles = StyleSheet.create({
