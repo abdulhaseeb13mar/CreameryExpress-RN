@@ -17,6 +17,8 @@ import {connect} from 'react-redux';
 // titleStyle
 // leftIconColor
 // rightIconColor
+// leftIconStyle
+// rightIconStyle
 
 function MyHeader({
   leftIcon,
@@ -30,6 +32,9 @@ function MyHeader({
   rightIconAction,
   rightIconName,
   rightIconColor,
+  badgeColor,
+  leftIconStyle,
+  rightIconStyle,
 }) {
   const LeftIconLibrary = leftIcon;
   const RightIconLibrary = rightIcon;
@@ -42,12 +47,15 @@ function MyHeader({
               name={leftIconName}
               size={H_W.width * 0.065}
               color={leftIconColor ? leftIconColor : colors.primary}
+              style={leftIconStyle ? leftIconStyle : {}}
             />
             {totalItems > 0 && leftIconName.includes('shopping') && (
               <Badge
                 value={totalItems}
                 containerStyle={styles.badgeContainer}
-                badgeStyle={{backgroundColor: colors.primary}}
+                badgeStyle={{
+                  backgroundColor: badgeColor ? badgeColor : 'red',
+                }}
               />
             )}
           </TouchableOpacity>
@@ -67,12 +75,15 @@ function MyHeader({
               name={rightIconName}
               size={H_W.width * 0.075}
               color={rightIconColor ? rightIconColor : colors.primary}
+              style={rightIconStyle ? rightIconStyle : {}}
             />
             {totalItems > 0 && rightIconName.includes('shopping') && (
               <Badge
                 value={totalItems}
                 containerStyle={styles.badgeContainer}
-                badgeStyle={{backgroundColor: colors.primary}}
+                badgeStyle={{
+                  backgroundColor: badgeColor ? badgeColor : 'red',
+                }}
               />
             )}
           </TouchableOpacity>
