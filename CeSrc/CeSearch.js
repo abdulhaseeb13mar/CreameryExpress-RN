@@ -8,14 +8,9 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import SearchBar from '../CeComp/CeSearchBar';
 import Data from '../CeData';
-import {FruityTiles} from './CeHome';
-import Loop from '../CeComp/CeFlatList';
+import {HorizontalList} from './CeHome';
 import {connect} from 'react-redux';
-import {
-  CesetCurrentProductAction,
-  CeremoveFavAction,
-  CesetFavAction,
-} from '../CeRedux/CeActions';
+import {CesetCurrentProductAction} from '../CeRedux/CeActions';
 import UseHeader from '../CeComp/CeHeader';
 
 function Search(props) {
@@ -23,7 +18,7 @@ function Search(props) {
 
   const RenderSearchedResult = () => {
     var SearchedItems = Data.product.filter((item) =>
-      item.name.toLowerCase().includes(searchText.toLowerCase()),
+      item.names.toLowerCase().includes(searchText.toLowerCase()),
     );
     return SearchedItems.length === 0 ? (
       <Text style={{fontWeight: 'bold', textAlign: 'center'}}>
@@ -36,24 +31,17 @@ function Search(props) {
 
   const CeGoToSingleProduct = (item) => {
     props.CesetCurrentProductAction(item);
-    NavigationRef.Navigate('CeSingleProduct');
+    NavigationRef.Navigate('CeSP');
   };
 
   const CardRender = (Arr) => {
-    return (
-      <Loop
-        data={Arr}
-        renderItem={({item}) => (
-          <FruityTiles
-            item={item}
-            CeGoToSingleProduct={CeGoToSingleProduct}
-            CeFavs={props.CeFavs}
-            CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
-            CeSetFavAct={(i) => props.CesetFavAction(i)}
-          />
-        )}
-      />
-    );
+    return Arr.map((item, index) => (
+      <View
+        key={index}
+        style={{width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+        <HorizontalList item={item} CeGoToSingleProduct={CeGoToSingleProduct} />
+      </View>
+    ));
   };
   const CeGoBack = () => NavigationRef.GoBack();
 
@@ -63,8 +51,18 @@ function Search(props) {
       <UseHeader
         leftIcon={Entypo}
         leftIconName="chevron-left"
-        Title="Everything Here"
+        Title="All Ice Creams"
         leftIconAction={CeGoBack}
+        titleStyle={{
+          textShadowColor: '#bcbcbc',
+          textShadowOffset: {width: 2, height: 2},
+          textShadowRadius: 2,
+        }}
+        leftIconStyle={{
+          textShadowColor: '#bcbcbc',
+          textShadowOffset: {width: 2, height: 2},
+          textShadowRadius: 2,
+        }}
       />
       <View style={styles.SearchBarWrapper}>
         <SearchBar changeSearchText={changeSearchText} />
@@ -86,8 +84,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   CesetCurrentProductAction,
-  CeremoveFavAction,
-  CesetFavAction,
 })(Search);
 
 const styles = StyleSheet.create({

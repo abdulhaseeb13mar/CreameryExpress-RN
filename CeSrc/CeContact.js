@@ -8,7 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {H_W} from '../CeComp/CeDim';
 import {colors} from '../CeComp/CeColor';
 import {Button, Overlay} from 'react-native-elements';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import {isFormValid} from '../CeComp/validation';
 import NavPointer from '../CeComp/RefNavigation';
@@ -140,10 +140,20 @@ const ConfirmOrder = (props) => {
     <WrapperScreen style={{backgroundColor: colors.lightBackground}}>
       <KeyboardAwareScrollView style={styles.container}>
         <UseHeader
-          leftIcon={AntDesign}
+          leftIcon={Entypo}
+          leftIconName="chevron-left"
           Title="Checkout"
-          leftIconName="arrowleft"
           leftIconAction={goBack}
+          titleStyle={{
+            textShadowColor: '#bcbcbc',
+            textShadowOffset: {width: 2, height: 2},
+            textShadowRadius: 2,
+          }}
+          leftIconStyle={{
+            textShadowColor: '#bcbcbc',
+            textShadowOffset: {width: 2, height: 2},
+            textShadowRadius: 2,
+          }}
         />
         <View style={styles.summaryOverlay}>
           <View style={styles.sm1}>
@@ -158,112 +168,112 @@ const ConfirmOrder = (props) => {
           </View>
         </View>
         <View style={styles.personalInfoWrapper}>
-          <Text style={styles.personalInfoHeader}>Contact Info</Text>
+          <Text style={styles.personalInfoHeader}>Personal Information</Text>
         </View>
         <View style={styles.PersonalInfoWrapper}>
           <View style={styles.singlePersonalInfoWrapper}>
             <Text
               style={{
                 ...styles.personalInfoHeadingName,
-                color: firstNameErrMsg ? 'red' : colors.primary,
+                color: firstNameErrMsg ? 'red' : 'black',
               }}>
               FIRST NAME <Text> {firstNameErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <Feather
-                name="user"
-                size={H_W.width * 0.07}
-                style={styles.inputIcon}
-              />
               <TextInput
                 placeholder="First Name"
                 style={styles.Input}
                 onChangeText={changeFirstName}
               />
-            </View>
-          </View>
-          <View style={styles.singlePersonalInfoWrapper}>
-            <Text
-              style={{
-                ...styles.personalInfoHeadingName,
-                color: lastNameErrMsg ? 'red' : colors.primary,
-              }}>
-              LAST NAME <Text> {lastNameErrMsg}</Text>
-            </Text>
-            <View style={styles.personalInfoInputWrapper}>
               <Feather
                 name="user"
                 size={H_W.width * 0.07}
                 style={styles.inputIcon}
               />
+            </View>
+          </View>
+          <View style={styles.singlePersonalInfoWrapper}>
+            <Text
+              style={{
+                ...styles.personalInfoHeadingName,
+                color: lastNameErrMsg ? 'red' : 'black',
+              }}>
+              LAST NAME <Text> {lastNameErrMsg}</Text>
+            </Text>
+            <View style={styles.personalInfoInputWrapper}>
               <TextInput
                 placeholder="Last Name"
                 style={styles.Input}
                 onChangeText={changeLastName}
               />
+              <Feather
+                name="user"
+                size={H_W.width * 0.07}
+                style={styles.inputIcon}
+              />
             </View>
           </View>
           <View style={styles.singlePersonalInfoWrapper}>
             <Text
               style={{
                 ...styles.personalInfoHeadingName,
-                color: emailErrMsg ? 'red' : colors.primary,
+                color: emailErrMsg ? 'red' : 'black',
               }}>
               EMAIL<Text> {emailErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <Feather
-                name="mail"
-                size={H_W.width * 0.07}
-                style={styles.inputIcon}
-              />
               <TextInput
                 placeholder="Email"
                 style={styles.Input}
                 onChangeText={changeEmail}
               />
+              <Feather
+                name="mail"
+                size={H_W.width * 0.07}
+                style={styles.inputIcon}
+              />
             </View>
           </View>
           <View style={styles.singlePersonalInfoWrapper}>
             <Text
               style={{
                 ...styles.personalInfoHeadingName,
-                color: phoneErrMsg ? 'red' : colors.primary,
+                color: phoneErrMsg ? 'red' : 'black',
               }}>
               PHONE<Text> {phoneErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <Feather
-                name="phone"
-                size={H_W.width * 0.07}
-                style={styles.inputIcon}
-              />
               <TextInput
                 placeholder="Phone Number"
                 keyboardType="number-pad"
                 style={styles.Input}
                 onChangeText={changePhone}
               />
+              <Feather
+                name="phone"
+                size={H_W.width * 0.07}
+                style={styles.inputIcon}
+              />
             </View>
           </View>
           <View style={styles.singlePersonalInfoWrapper}>
             <Text
               style={{
                 ...styles.personalInfoHeadingName,
-                color: addressErrMsg ? 'red' : colors.primary,
+                color: addressErrMsg ? 'red' : 'black',
               }}>
               ADDRESS<Text> {addressErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <Feather
-                name="map-pin"
-                size={H_W.width * 0.07}
-                style={styles.inputIcon}
-              />
               <TextInput
                 placeholder="Address"
                 style={styles.Input}
                 onChangeText={changeAddress}
+              />
+              <Feather
+                name="map-pin"
+                size={H_W.width * 0.07}
+                style={styles.inputIcon}
               />
             </View>
           </View>
@@ -273,7 +283,7 @@ const ConfirmOrder = (props) => {
             title="CONFIRM ORDER"
             raised
             buttonStyle={styles.confirmButton}
-            titleStyle={{color: 'white', fontWeight: 'bold'}}
+            titleStyle={{color: 'black', fontWeight: 'bold'}}
             containerStyle={styles.confirmButtonContainer}
             onPress={Confirm}
             loading={loading}
@@ -302,7 +312,6 @@ const ConfirmOrder = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    pdt: state.CeCrntPrdtReducer,
     total: state.CeCartReducer.totalAmount,
   };
 };
@@ -326,7 +335,7 @@ const styles = StyleSheet.create({
   sm1: {
     width: '75%',
     backgroundColor: colors.secondary,
-    borderRadius: 50,
+    borderRadius: 18,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: {
@@ -437,7 +446,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'white',
     paddingHorizontal: H_W.width * 0.02,
-    borderRadius: 50,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: colors.primary,
   },

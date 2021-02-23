@@ -31,6 +31,7 @@ function CeHome(props) {
     fill_Popular_Arrival();
   }, []);
   const insets = useSafeAreaInsets();
+  const HEIGHT = H_W.height - (insets.bottom + insets.top);
   const [mostPopular, setMostPopular] = useState([]);
   const [newArrival, setNewArrival] = useState([]);
 
@@ -49,9 +50,8 @@ function CeHome(props) {
     setNewArrival(newArrivals);
   };
 
-  const CeGotoFavourites = () => RefNavigation.NavigateAndReset('CeFavourites');
   const CeGotoCart = () => RefNavigation.NavigateAndReset('CeCart');
-  const CeGotoSearch = () => RefNavigation.Navigate('SearchJuiceFruitify');
+  const CeGotoSearch = () => RefNavigation.Navigate('CeSearch');
   const CeGoToSingleProduct = (item) => {
     props.CesetCurrentProductAction(item);
     RefNavigation.NavigateAndReset('CeSP');
@@ -61,11 +61,13 @@ function CeHome(props) {
       <View style={{...border, flex: 1}}>
         <ScrollView bounces={false} style={{flex: 1}}>
           <MyHeader
-            leftIcon={Ionicons}
-            leftIconName="ios-heart-outline"
-            leftIconAction={CeGotoFavourites}
-            rightIconAction={CeGotoCart}
+            leftIcon={Feather}
+            leftIconName="shopping-bag"
+            leftIconColor="black"
+            leftIconAction={CeGotoCart}
+            rightIconAction={CeGotoSearch}
             rightIcon={Feather}
+            rightIconColor="black"
             rightIconName="search"
             Title={
               <Ionicons
@@ -74,8 +76,13 @@ function CeHome(props) {
                 name="ios-ice-cream-outline"
               />
             }
+            rightIconStyle={{
+              textShadowColor: '#bcbcbc',
+              textShadowOffset: {width: 2, height: 2},
+              textShadowRadius: 2,
+            }}
           />
-          <View style={{...border}}>
+          <View style={{...border, marginTop: HEIGHT * 0.02}}>
             <View
               style={{
                 flexDirection: 'row',
@@ -100,7 +107,7 @@ function CeHome(props) {
                   Top Flavours
                 </Text>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={CeGotoSearch}>
                 <Text
                   style={{
                     color: colors.lightGrey3,
@@ -152,7 +159,7 @@ function CeHome(props) {
                   New Flavours
                 </Text>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={CeGotoSearch}>
                 <Text
                   style={{
                     color: colors.lightGrey3,
@@ -201,9 +208,10 @@ function CeHome(props) {
                 fontWeight: 'bold',
                 fontSize: 18,
               }}>
-              Total: $12.50
+              Total: ${props.CeTotal}
             </Text>
             <Button
+              onPress={CeGotoCart}
               title="Order Now"
               raised
               titleStyle={{
@@ -238,12 +246,13 @@ function CeHome(props) {
   );
 }
 
-export const HorizontalList = ({item, CeGoToSingleProduct}) => {
+export const HorizontalList = ({item, CeGoToSingleProduct, cart}) => {
   return (
     <View
       style={{
         backgroundColor: 'white',
-        margin: 20,
+        margin: cart ? 0 : 20,
+        ...border,
       }}>
       <TouchableOpacity
         onPress={() => CeGoToSingleProduct(item)}
@@ -258,6 +267,7 @@ export const HorizontalList = ({item, CeGoToSingleProduct}) => {
           },
           shadowOpacity: 0.23,
           shadowRadius: 2.62,
+          ...border,
         }}>
         <View
           style={{
@@ -292,6 +302,11 @@ export const HorizontalList = ({item, CeGoToSingleProduct}) => {
               {item.names}
             </Text>
           </View>
+          {cart && (
+            <Text style={{color: colors.darkGray, fontWeight: 'bold'}}>
+              {item.flavor.topping}
+            </Text>
+          )}
           <View
             style={{
               flexDirection: 'row',
@@ -401,7 +416,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    CeFavs: state.CeToggleFav,
+    CeTotal: state.CeCartReducer.totalAmount,
   };
 };
 

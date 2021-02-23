@@ -1,78 +1,90 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect} from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {
-  CeremoveFavAction,
-  CesetFavAction,
   CeremoveCartAction,
   CeaddCartAction,
   CesetCurrentProductAction,
 } from '../CeRedux/CeActions';
 import WrapperScreen from '../CeComp/WrapperScreen';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {colors} from '../CeComp/CeColor';
-import {Measurements} from '../CeComp/CeDim';
+import {H_W} from '../CeComp/CeDim';
 import RefNavigation from '../CeComp/RefNavigation';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Button} from 'react-native-elements';
 import MyHeader from '../CeComp/CeHeader';
-import {FruityTiles} from './CeHome';
-import Loop from '../CeComp/CeFlatList';
+import {HorizontalList} from './CeHome';
+import CeItemCounterWrapper from '../CeComp/CeItemCounterWrapper';
 
 export const Cart = (props) => {
-  useEffect(() => {
-    convertObjectToArray();
-  }, [props.CeCart.items]);
-  const [HorizontalCartArray, setHorizontalCartArray] = useState([]);
-  const goBack = () => RefNavigation.Navigate('CeHome');
+  const insets = useSafeAreaInsets();
+  const CeCartArray = Object.keys(props.CeCart);
+  const HEIGHT = H_W.height - (insets.bottom + insets.top);
 
-  const convertObjectToArray = () => {
-    const CartArray = Object.keys(props.CeCart.items);
-    let CeArr = [];
-    CartArray.forEach((element) => {
-      CeArr.push(props.CeCart.items[element]);
-    });
-    setHorizontalCartArray(CeArr);
-  };
+  const goBack = () => RefNavigation.Navigate('CeHome');
 
   const CeGoToSingleProduct = (item) => {
     props.CesetCurrentProductAction(item);
-    RefNavigation.Navigate('CeSingleProduct');
+    RefNavigation.Navigate('CeSP');
   };
 
-  const infoScreen = () => RefNavigation.Navigate('InfoScreen');
+  const CeinfoScreen = () => RefNavigation.Navigate('CeContact');
 
   return (
     <WrapperScreen style={{backgroundColor: 'white'}}>
       <View style={{flex: 1}}>
-        <MyHeader
-          leftIcon={Entypo}
-          leftIconName="chevron-left"
-          leftIconAction={goBack}
-          Title="Cart"
-        />
-        <ScrollView>
+        <ScrollView bounces={false} style={{flex: 1}}>
+          <MyHeader
+            leftIcon={Entypo}
+            leftIconName="chevron-left"
+            leftIconAction={goBack}
+            Title="Cart"
+            leftIconStyle={{
+              textShadowColor: '#bcbcbc',
+              textShadowOffset: {width: 2, height: 2},
+              textShadowRadius: 2,
+            }}
+            titleStyle={{
+              textShadowColor: '#bcbcbc',
+              textShadowOffset: {width: 2, height: 2},
+              textShadowRadius: 2,
+            }}
+          />
           <View style={styles.TilesWrapper}>
-            {HorizontalCartArray.length > 0 ? (
-              <View style={styles.fav_SL1}>
-                <Loop
-                  data={HorizontalCartArray}
-                  renderItem={({item}) => {
-                    return (
-                      <FruityTiles
+            {CeCartArray.length > 0 ? (
+              CeCartArray.map((id, index) => {
+                const item = props.CeCart[id];
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      width: '100%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <CeItemCounterWrapper
+                      position="left"
+                      Counterlength={HEIGHT * 0.11}
+                      style={{margin: 17}}
+                      item={item}
+                      CeGoToSingleProduct={CeGoToSingleProduct}>
+                      <HorizontalList
                         item={item}
                         CeGoToSingleProduct={CeGoToSingleProduct}
-                        CeFavs={props.CeFavs}
-                        CeRemoveFavAct={(i) => props.CeremoveFavAction(i)}
-                        CeSetFavAct={(i) => props.CesetFavAction(i)}
-                        CeaddCartAction={(i) => props.CeaddCartAction(i)}
-                        CeremoveCartAction={(i) => props.CeremoveCartAction(i)}
-                        isCart={true}
+                        cart={true}
                       />
-                    );
-                  }}
-                />
-              </View>
+                    </CeItemCounterWrapper>
+                  </View>
+                );
+              })
             ) : (
               <Text
                 style={{
@@ -88,118 +100,78 @@ export const Cart = (props) => {
         </ScrollView>
         <View
           style={{
-            backgroundColor: colors.primary,
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-            width: Measurements.width,
-            alignItems: 'center',
+            marginBottom: -insets.bottom,
+            height: H_W.height * 0.2,
+            borderTopRightRadius: 45,
+            borderTopLeftRadius: 45,
+            backgroundColor: `rgba(${colors.rgb_Primary},1)`,
+            position: 'relative',
+            paddingHorizontal: H_W.width * 0.07,
             justifyContent: 'center',
+            borderWidth: 2,
+            borderColor: 'black',
+            borderBottomColor: 'transparent',
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '75%',
-              marginTop: Measurements.height * 0.015,
-            }}>
+          <View style={{...border}}>
             <Text
               style={{
-                color: 'white',
+                ...border,
+                color: 'black',
                 fontWeight: 'bold',
-                fontSize: Measurements.width * 0.035,
+                fontSize: 18,
               }}>
-              Total Amount:
+              Total: ${props.CeTotal}
             </Text>
-            <Text
-              style={{
-                color: colors.primary,
-                fontWeight: 'bold',
-                fontSize: Measurements.width * 0.05,
-                backgroundColor: 'white',
-                padding: 3,
-                borderRadius: 8,
-                elevation: 2,
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 1,
-                },
-                shadowOpacity: 0.2,
-                shadowRadius: 1.41,
-              }}>
-              ${props.CeTotal}
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '75%',
-              marginTop: Measurements.height * 0.015,
-            }}>
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: Measurements.width * 0.035,
-              }}>
-              Payment Mode:
-            </Text>
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: Measurements.width * 0.035,
-              }}>
-              Payment on Delivery
-            </Text>
-          </View>
-          <View
-            style={{
-              paddingVertical: Measurements.height * 0.018,
-              width: '80%',
-            }}>
             <Button
-              raised
-              onPress={infoScreen}
+              onPress={CeinfoScreen}
+              title="Checkout"
               disabled={props.CeTotal < 1}
-              title="PROCEED TO CHECKOUT"
+              raised
               titleStyle={{
-                fontSize: Measurements.width * 0.05,
                 color: colors.primary,
-                fontWeight: 'bold',
+                textShadowColor: '#bcbcbc',
+                textShadowOffset: {width: 2, height: 2},
+                textShadowRadius: 2,
               }}
               buttonStyle={{
-                paddingVertical: Measurements.height * 0.015,
-                backgroundColor: colors.secondary,
+                ...border,
+                backgroundColor: 'white',
+                borderRadius: 10,
               }}
-              containerStyle={{
-                width: '100%',
-                borderRadius: 50,
-              }}
+              containerStyle={{...border, marginTop: 8, width: '40%'}}
             />
           </View>
+          <ImageBackground
+            source={require('../CeAssets/ice22.png')}
+            style={{
+              width: H_W.width * 0.4,
+              height: H_W.height * 0.3,
+              position: 'absolute',
+              right: 0,
+              top: -H_W.height * 0.05,
+              ...border,
+            }}
+            resizeMode="contain"
+          />
         </View>
       </View>
     </WrapperScreen>
   );
 };
-
+const border = {
+  // borderColor: 'red',
+  // borderWidth: 1,
+};
 const styles = StyleSheet.create({
   TilesWrapper: {},
 });
 
 const mapStateToProps = (state) => ({
-  CeCart: state.CeCartReducer,
+  CeCart: state.CeCartReducer.items,
   CeTotal: state.CeCartReducer.totalAmount,
-  CeFavs: state.CeToggleFav,
 });
 
 export default connect(mapStateToProps, {
-  CesetFavAction,
-  CeremoveFavAction,
   CeremoveCartAction,
   CeaddCartAction,
   CesetCurrentProductAction,

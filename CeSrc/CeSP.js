@@ -65,7 +65,6 @@ function SingleProduct(props) {
   // };
 
   const CeAddToCart = () => {
-    console.log({...CeProduct, flavor: CurrFlavours});
     props.CeaddCartAction({...CeProduct, flavor: CurrFlavours});
   };
   const CeRemoveFromCart = () => {
@@ -129,14 +128,13 @@ function SingleProduct(props) {
                 <View style={styles.singleProduct_CE2}>
                   <TouchableOpacity
                     style={{
-                      zIndex: 100,
                       width: '26%',
                       alignItems: 'center',
                       justifyContent: 'center',
                       alignSelf: 'stretch',
                       borderColor: 'red',
                       borderWidth: 1,
-                      borderRadius: 50,
+                      // borderRadius: 50,
                       height: HEIGHT * 0.05,
                     }}
                     onPress={CeRemoveFromCart}>
@@ -158,14 +156,13 @@ function SingleProduct(props) {
                   <TouchableOpacity
                     onPress={CeAddToCart}
                     style={{
-                      zIndex: 100,
                       width: '26%',
                       alignItems: 'center',
                       alignSelf: 'stretch',
                       justifyContent: 'center',
                       borderColor: 'red',
                       borderWidth: 1,
-                      borderRadius: 50,
+                      // borderRadius: 50,
                       height: HEIGHT * 0.05,
                     }}>
                     <Entypo

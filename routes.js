@@ -7,10 +7,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import Navigator from './CeComp/RefNavigation';
 import CeHome from './CeSrc/CeHome';
 import CeSP from './CeSrc/CeSP';
-// import CeCart from './Main/CeCart';
-// import InfoScreen from './Main/InfoScreen';
-// import SearchJuiceFruitify from './Main/SearchJuiceFruitify';
-// import CeFavourites from './Main/CeFavourites';
+import CeCart from './CeSrc/CeCart';
+import CeContact from './CeSrc/CeContact';
+import CeSearch from './CeSrc/CeSearch';
 const Stack = createStackNavigator();
 
 function Routes(props) {
@@ -27,13 +26,9 @@ function Routes(props) {
         }}>
         <Stack.Screen name="CeHome" component={CeHome} />
         <Stack.Screen name="CeSP" component={CeSP} />
-        {/* <Stack.Screen name="CeCart" component={CeCart} /> */}
-        {/* <Stack.Screen
-          name="SearchJuiceFruitify"
-          component={SearchJuiceFruitify}
-        /> */}
-        {/* <Stack.Screen name="CeFavourites" component={CeFavourites} /> */}
-        {/* <Stack.Screen name="InfoScreen" component={InfoScreen} /> */}
+        <Stack.Screen name="CeCart" component={CeCart} />
+        <Stack.Screen name="CeSearch" component={CeSearch} />
+        <Stack.Screen name="CeContact" component={CeContact} />
       </Stack.Navigator>
     </NavigationContainer>
   );
