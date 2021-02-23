@@ -419,6 +419,7 @@ const styles = StyleSheet.create({
   confirmButton: {
     backgroundColor: colors.primary,
     padding: H_W.height * 0.018,
+    borderRadius: 50,
   },
   ConfirmButtonWrapper: {
     display: 'flex',
