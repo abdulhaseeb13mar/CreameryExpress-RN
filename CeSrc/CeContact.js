@@ -138,7 +138,7 @@ const ConfirmOrder = (props) => {
 
   return (
     <WrapperScreen style={{backgroundColor: colors.lightBackground}}>
-      <KeyboardAwareScrollView style={styles.container}>
+      <KeyboardAwareScrollView style={styles.container} bounces={false}>
         <UseHeader
           leftIcon={Entypo}
           leftIconName="chevron-left"
