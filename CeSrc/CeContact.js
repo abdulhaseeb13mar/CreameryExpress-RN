@@ -15,6 +15,7 @@ import NavPointer from '../CeComp/RefNavigation';
 import {CeUserAction, CeresetCart} from '../CeRedux/CeActions';
 import Toast from 'react-native-root-toast';
 import UseHeader from '../CeComp/CeHeader';
+import {color} from 'react-native-reanimated';
 
 const ConfirmOrder = (props) => {
   const [firstName, setFirstName] = useState('');
@@ -287,6 +288,7 @@ const ConfirmOrder = (props) => {
             containerStyle={styles.confirmButtonContainer}
             onPress={Confirm}
             loading={loading}
+            loadingProps={{color: 'black'}}
           />
         </View>
         <Overlay
