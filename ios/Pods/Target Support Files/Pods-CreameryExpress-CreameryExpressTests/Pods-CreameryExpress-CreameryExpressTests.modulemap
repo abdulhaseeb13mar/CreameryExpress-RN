@@ -1,0 +1,6 @@
+module Pods_CreameryExpress_CreameryExpressTests {
+  umbrella header "Pods-CreameryExpress-CreameryExpressTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
