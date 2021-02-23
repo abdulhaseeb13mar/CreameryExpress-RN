@@ -53,16 +53,8 @@ function Search(props) {
         leftIconName="chevron-left"
         Title="All Ice Creams"
         leftIconAction={CeGoBack}
-        titleStyle={{
-          textShadowColor: '#bcbcbc',
-          textShadowOffset: {width: 2, height: 2},
-          textShadowRadius: 2,
-        }}
-        leftIconStyle={{
-          textShadowColor: '#bcbcbc',
-          textShadowOffset: {width: 2, height: 2},
-          textShadowRadius: 2,
-        }}
+        titleStyle={styles.TextShadow}
+        leftIconStyle={styles.TextShadow}
       />
       <View style={styles.SearchBarWrapper}>
         <SearchBar changeSearchText={changeSearchText} />
@@ -87,20 +79,10 @@ export default connect(mapStateToProps, {
 })(Search);
 
 const styles = StyleSheet.create({
-  headerWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: H_W.width * 0.03,
-    paddingVertical: H_W.height * 0.018,
-  },
-  TilesWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    flexWrap: 'wrap',
+  TextShadow: {
+    textShadowColor: '#bcbcbc',
+    textShadowOffset: {width: 2, height: 2},
+    textShadowRadius: 2,
   },
   SearchBarWrapper: {
     flexDirection: 'row',

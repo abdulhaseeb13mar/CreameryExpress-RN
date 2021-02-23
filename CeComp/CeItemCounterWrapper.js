@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {H_W} from './CeDim';
 import Feather from 'react-native-vector-icons/Feather';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {colors} from './CeColor';
 import {CeaddCartAction, CeremoveCartAction} from '../CeRedux/CeActions';
 
 const ItemCounterWrapper = ({style, position, Counterlength, ...props}) => {
@@ -18,14 +17,6 @@ const ItemCounterWrapper = ({style, position, Counterlength, ...props}) => {
           position === 'top' || position === 'bottom' ? 'column' : 'row',
       }}>
       {(position === 'top' || position === 'left') && (
-        // <View
-        //   style={{
-        //     // alignSelf: 'stretch',
-        //     // alignItems: 'center',
-        //     justifyContent: 'center',
-        //     height: '100%',
-        //     borderWidth: 1.5,
-        //   }}>
         <DefaultCounter
           position={position}
           item={props.item}
@@ -34,16 +25,9 @@ const ItemCounterWrapper = ({style, position, Counterlength, ...props}) => {
           CeremoveCart={(i) => props.CeremoveCartAction(i)}
           Counterlength={Counterlength}
         />
-        // </View>
       )}
       {props.children}
       {(position === 'bottom' || position === 'right') && (
-        // <View
-        //   style={{
-        //     alignSelf: 'stretch',
-        //     alignItems: 'center',
-        //     justifyContent: 'center',
-        //   }}>
         <DefaultCounter
           position={position}
           item={props.item}
@@ -52,7 +36,6 @@ const ItemCounterWrapper = ({style, position, Counterlength, ...props}) => {
           CeremoveCart={(i) => props.CeremoveCartAction(i)}
           Counterlength={Counterlength}
         />
-        // </View>
       )}
     </View>
   );
@@ -70,12 +53,12 @@ const DefaultCounter = ({
   return (
     <View
       style={{
-        ...styles.home_TE16,
+        ...styles.itemCounter_CE2,
         paddingVertical: HEIGHT * 0.003,
       }}>
       <View
         style={{
-          ...styles.home_TE17,
+          ...styles.itemCounter_CE1,
           marginVertical: HEIGHT * 0.013,
           ...(position === 'top' || position === 'bottom'
             ? {width: Counterlength}
@@ -99,14 +82,12 @@ const DefaultCounter = ({
   );
 };
 
-const mapStateToProps = (state) => ({});
-
 const styles = StyleSheet.create({
-  home_TE17: {
+  itemCounter_CE1: {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  home_TE16: {
+  itemCounter_CE2: {
     backgroundColor: 'white',
     borderRadius: 15,
     elevation: 3,
@@ -121,6 +102,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, {CeaddCartAction, CeremoveCartAction})(
+export default connect(null, {CeaddCartAction, CeremoveCartAction})(
   ItemCounterWrapper,
 );

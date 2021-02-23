@@ -47,29 +47,15 @@ export const Cart = (props) => {
             leftIconName="chevron-left"
             leftIconAction={goBack}
             Title="Cart"
-            leftIconStyle={{
-              textShadowColor: '#bcbcbc',
-              textShadowOffset: {width: 2, height: 2},
-              textShadowRadius: 2,
-            }}
-            titleStyle={{
-              textShadowColor: '#bcbcbc',
-              textShadowOffset: {width: 2, height: 2},
-              textShadowRadius: 2,
-            }}
+            leftIconStyle={styles.cart_CE1}
+            titleStyle={styles.cart_CE1}
           />
-          <View style={styles.TilesWrapper}>
+          <View>
             {CeCartArray.length > 0 ? (
               CeCartArray.map((id, index) => {
                 const item = props.CeCart[id];
                 return (
-                  <View
-                    key={index}
-                    style={{
-                      width: '100%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
+                  <View key={index} style={styles.cart_CE2}>
                     <CeItemCounterWrapper
                       position="left"
                       Counterlength={HEIGHT * 0.11}
@@ -86,70 +72,34 @@ export const Cart = (props) => {
                 );
               })
             ) : (
-              <Text
-                style={{
-                  width: '100%',
-                  fontWeight: 'bold',
-                  color: 'black',
-                  textAlign: 'center',
-                }}>
-                Your Cart is empty...
-              </Text>
+              <Text style={styles.cart_CE3}>Your Cart is empty...</Text>
             )}
           </View>
         </ScrollView>
         <View
           style={{
+            ...styles.cart_CE4,
             marginBottom: -insets.bottom,
-            height: H_W.height * 0.2,
-            borderTopRightRadius: 45,
-            borderTopLeftRadius: 45,
-            backgroundColor: `rgba(${colors.rgb_Primary},1)`,
-            position: 'relative',
-            paddingHorizontal: H_W.width * 0.07,
-            justifyContent: 'center',
-            borderWidth: 2,
-            borderColor: 'black',
-            borderBottomColor: 'transparent',
+            height: HEIGHT * 0.2,
           }}>
-          <View style={{...border}}>
-            <Text
-              style={{
-                ...border,
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: 18,
-              }}>
-              Total: ${props.CeTotal}
-            </Text>
+          <View>
+            <Text style={styles.cart_CE5}>Total: ${props.CeTotal}</Text>
             <Button
               onPress={CeinfoScreen}
               title="Checkout"
               disabled={props.CeTotal < 1}
               raised
-              titleStyle={{
-                color: colors.primary,
-                textShadowColor: '#bcbcbc',
-                textShadowOffset: {width: 2, height: 2},
-                textShadowRadius: 2,
-              }}
-              buttonStyle={{
-                ...border,
-                backgroundColor: 'white',
-                borderRadius: 10,
-              }}
-              containerStyle={{...border, marginTop: 8, width: '40%'}}
+              titleStyle={styles.cart_CE6}
+              buttonStyle={styles.cart_CE7}
+              containerStyle={{marginTop: 8, width: '40%'}}
             />
           </View>
           <ImageBackground
             source={require('../CeAssets/ice22.png')}
             style={{
-              width: H_W.width * 0.4,
-              height: H_W.height * 0.3,
-              position: 'absolute',
-              right: 0,
-              top: -H_W.height * 0.05,
-              ...border,
+              ...styles.cart_CE8,
+              height: HEIGHT * 0.3,
+              top: -HEIGHT * 0.05,
             }}
             resizeMode="contain"
           />
@@ -158,12 +108,55 @@ export const Cart = (props) => {
     </WrapperScreen>
   );
 };
-const border = {
-  // borderColor: 'red',
-  // borderWidth: 1,
-};
+
 const styles = StyleSheet.create({
-  TilesWrapper: {},
+  cart_CE8: {
+    width: H_W.width * 0.4,
+    position: 'absolute',
+    right: 0,
+  },
+  cart_CE7: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  cart_CE6: {
+    color: colors.primary,
+    textShadowColor: '#bcbcbc',
+    textShadowOffset: {width: 2, height: 2},
+    textShadowRadius: 2,
+  },
+  cart_CE5: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  cart_CE4: {
+    borderTopRightRadius: 45,
+    borderTopLeftRadius: 45,
+    backgroundColor: `rgba(${colors.rgb_Primary},1)`,
+    position: 'relative',
+    paddingHorizontal: H_W.width * 0.07,
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'black',
+    borderBottomColor: 'transparent',
+  },
+  cart_CE3: {
+    width: '100%',
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
+  },
+  cart_CE2: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cart_CE1: {
+    textShadowColor: '#bcbcbc',
+    textShadowOffset: {width: 2, height: 2},
+    textShadowRadius: 2,
+  },
 });
 
 const mapStateToProps = (state) => ({
